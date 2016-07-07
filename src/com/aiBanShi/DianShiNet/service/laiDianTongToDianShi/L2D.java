@@ -27,14 +27,15 @@ public class L2D {
     @Autowired
     HionCustomerMapper hionCustomerMapper;
 
-
+//1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
     public void L2d(){
         
         //拿到所有的KHBH
         List<OneNvarchar> oneNvarchars = hionCustomerMapper.selectAllNotNullKhbh();
         //循环所有KHBH
         for (OneNvarchar on:oneNvarchars){
-            String khbh=on.getKhbh();
+            //得到当前客户编号
+            String khbh=on.getKhbh()
             HionCustomerExample hionCustomerExample=new HionCustomerExample();
             hionCustomerExample.createCriteria().andKhbhEqualTo(khbh);
             List<HionCustomer> hionCustomers = hionCustomerMapper.selectByExample(hionCustomerExample);
@@ -59,7 +60,8 @@ public class L2D {
             aspnetMembers.setAddress(hionContact.getContactaddr());
             aspnetMembers.setQq(hionContact.getQq());
             aspnetMembers.setEmail(hionContact.getEmail());
-
+            //自我约定,9999来自于来电通
+            aspnetMembers.setRegisteredsource(9999);
 
 
             aspnetMembersMapper.insert(aspnetMembers);

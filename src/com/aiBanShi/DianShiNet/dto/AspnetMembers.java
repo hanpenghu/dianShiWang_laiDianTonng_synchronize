@@ -30,7 +30,7 @@ public class AspnetMembers {
 
     private String picture;
 
-    private Integer gender;
+    private Integer gender=0;
 
     private Date birthdate;
 //是否开启预付款
@@ -71,7 +71,8 @@ public class AspnetMembers {
     private Boolean emailverification=true;
 //是否已经验证手机
     private Boolean cellphoneverification=true;
-
+    //客户来源
+////1.微商城 2.触屏版 3.APP  4.支付宝服务窗//
     private Integer registeredsource;
 
     private Boolean isquicklogin;
