@@ -35,7 +35,7 @@ public class L2D {
         //循环所有KHBH
         for (OneNvarchar on:oneNvarchars){
             //得到当前客户编号
-            String khbh=on.getKhbh()
+            String khbh=on.getKhbh();
             HionCustomerExample hionCustomerExample=new HionCustomerExample();
             hionCustomerExample.createCriteria().andKhbhEqualTo(khbh);
             List<HionCustomer> hionCustomers = hionCustomerMapper.selectByExample(hionCustomerExample);
