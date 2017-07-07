@@ -151,7 +151,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+  <!--<insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
     insert into aspnet_Members (UserId, ReferralUserId, GradeId, 
       UserName, Password, PasswordSalt, 
       PasswordQuestion, PasswordAnswer, CreateDate, 
@@ -182,7 +182,45 @@
       #{islogined,jdbcType=BIT}, #{unionid,jdbcType=VARCHAR}, #{issubscribe,jdbcType=BIT}, 
       #{nickname,jdbcType=VARCHAR}, #{tagids,jdbcType=VARCHAR}, #{issendappcoupons,jdbcType=BIT}
       )
+  </insert>-->
+
+
+
+  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+    insert into aspnet_Members (ReferralUserId, GradeId,
+    UserName, Password, PasswordSalt,
+    PasswordQuestion, PasswordAnswer, CreateDate,
+    Email, RealName, IdentityCard,
+    Picture, Gender, BirthDate,
+    IsOpenBalance, TradePassword, TradePasswordSalt,
+    OrderNumber, Expenditure, Points,
+    Balance, RequestBalance, TopRegionId,
+    RegionId, Address, CellPhone,
+    QQ, Wangwang, WeChat,
+    SessionId, SessionEndTime, EmailVerification,
+    CellPhoneVerification, RegisteredSource, IsQuickLogin,
+    IsLogined, Unionid, IsSubscribe,
+    NickName, TagIds, IsSendAppCoupons
+    )
+    values (#{referraluserid,jdbcType=INTEGER}, #{gradeid,jdbcType=INTEGER},
+    #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{passwordsalt,jdbcType=VARCHAR},
+    #{passwordquestion,jdbcType=VARCHAR}, #{passwordanswer,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP},
+    #{email,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{identitycard,jdbcType=VARCHAR},
+    #{picture,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{birthdate,jdbcType=TIMESTAMP},
+    #{isopenbalance,jdbcType=BIT}, #{tradepassword,jdbcType=VARCHAR}, #{tradepasswordsalt,jdbcType=VARCHAR},
+    #{ordernumber,jdbcType=INTEGER}, #{expenditure,jdbcType=DECIMAL}, #{points,jdbcType=INTEGER},
+    #{balance,jdbcType=DECIMAL}, #{requestbalance,jdbcType=DECIMAL}, #{topregionid,jdbcType=INTEGER},
+    #{regionid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR},
+    #{qq,jdbcType=VARCHAR}, #{wangwang,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR},
+    #{sessionid,jdbcType=VARCHAR}, #{sessionendtime,jdbcType=TIMESTAMP}, #{emailverification,jdbcType=BIT},
+    #{cellphoneverification,jdbcType=BIT}, #{registeredsource,jdbcType=INTEGER}, #{isquicklogin,jdbcType=BIT},
+    #{islogined,jdbcType=BIT}, #{unionid,jdbcType=VARCHAR}, #{issubscribe,jdbcType=BIT},
+    #{nickname,jdbcType=VARCHAR}, #{tagids,jdbcType=VARCHAR}, #{issendappcoupons,jdbcType=BIT}
+    )
   </insert>
+
+
+
   <insert id="insertSelective" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
     insert into aspnet_Members
     <trim prefix="(" suffix=")" suffixOverrides=",">

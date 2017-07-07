@@ -27,7 +27,8 @@ public class L2D {
     @Autowired
     HionCustomerMapper hionCustomerMapper;
 
-    public void f(){
+
+    public void L2d(){
         
         //拿到所有的KHBH
         List<OneNvarchar> oneNvarchars = hionCustomerMapper.selectAllNotNullKhbh();
@@ -53,8 +54,14 @@ public class L2D {
             Date date=null;
             try {date = sdf.parse(firstcalltime);} catch (ParseException e) {e.printStackTrace();}
             aspnetMembers.setCreatedate(date);
-
             aspnetMembers.setRealname(hionContact.getContact());
+            aspnetMembers.setCellphone(hionContact.getMobile());
+            aspnetMembers.setAddress(hionContact.getContactaddr());
+            aspnetMembers.setQq(hionContact.getQq());
+            aspnetMembers.setEmail(hionContact.getEmail());
+
+
+
             aspnetMembersMapper.insert(aspnetMembers);
 
         }
@@ -74,7 +81,7 @@ public class L2D {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(configs);
         System.out.println(ctx+"---------------------");
         L2D bean = SpringUtil.getBean(L2D.class);
-        bean.f();
+        bean.L2d();
     }
 
 

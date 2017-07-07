@@ -5,26 +5,26 @@ import java.util.Date;
 
 public class AspnetMembers {
     private Integer userid;
+//上级推广员
+    private Integer referraluserid=0;
+//会员等级id
+    private Integer gradeid=1;
+//用户名
+    private String username="systemDefault";
 
-    private Integer referraluserid;
+    private String password="systemDefault";
 
-    private Integer gradeid;
-
-    private String username;
-
-    private String password;
-
-    private String passwordsalt;
+    private String passwordsalt="systemDefault";
 
     private String passwordquestion;
 
     private String passwordanswer;
+//创建时间
+    private Date createdate=new Date();
 
-    private Date createdate;
+    private String email="systemDefault";
 
-    private String email;
-
-    private String realname;
+    private String realname="systemDefault";
 
     private String identitycard;
 
@@ -33,26 +33,26 @@ public class AspnetMembers {
     private Integer gender;
 
     private Date birthdate;
-
-    private Boolean isopenbalance;
+//是否开启预付款
+    private Boolean isopenbalance=true;
 
     private String tradepassword;
 
     private String tradepasswordsalt;
 
-    private Integer ordernumber;
-
-    private BigDecimal expenditure;
-
-    private Integer points;
-
-    private BigDecimal balance;
-
-    private BigDecimal requestbalance;
-
-    private Integer topregionid;
-
-    private Integer regionid;
+    private Integer ordernumber=0;
+//支出金额
+    private BigDecimal expenditure=new BigDecimal(0);
+//积分
+    private Integer points=0;
+//预付款余额
+    private BigDecimal balance=new BigDecimal(0);
+//预付款提现金额
+    private BigDecimal requestbalance=new BigDecimal(0);
+//顶级地区ID
+    private Integer topregionid=9999;
+//地区ID
+    private Integer regionid=9999;
 
     private String address;
 
@@ -67,10 +67,10 @@ public class AspnetMembers {
     private String sessionid;
 
     private Date sessionendtime;
-
-    private Boolean emailverification;
-
-    private Boolean cellphoneverification;
+//是否已经验证邮箱
+    private Boolean emailverification=true;
+//是否已经验证手机
+    private Boolean cellphoneverification=true;
 
     private Integer registeredsource;
 
