@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiBanShi.DianShiNet.dao.mapperJava1.HionCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    <id column="Recid" jdbcType="INTEGER" property="recid" />
+    <result column="KHBH" jdbcType="VARCHAR" property="khbh" />
+    <result column="CompanyName" jdbcType="VARCHAR" property="companyname" />
+    <result column="CompanyAddr" jdbcType="VARCHAR" property="companyaddr" />
+    <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="VIP" jdbcType="VARCHAR" property="vip" />
+    <result column="ContactorType" jdbcType="VARCHAR" property="contactortype" />
+    <result column="Intention" jdbcType="VARCHAR" property="intention" />
+    <result column="Area" jdbcType="VARCHAR" property="area" />
+    <result column="Workerid" jdbcType="VARCHAR" property="workerid" />
+    <result column="WorkerName" jdbcType="VARCHAR" property="workername" />
+    <result column="FirstCallTime" jdbcType="VARCHAR" property="firstcalltime" />
+    <result column="ZDY1" jdbcType="VARCHAR" property="zdy1" />
+    <result column="ZDY2" jdbcType="VARCHAR" property="zdy2" />
+    <result column="ZDY3" jdbcType="VARCHAR" property="zdy3" />
+    <result column="LastContactTime" jdbcType="VARCHAR" property="lastcontacttime" />
+    <result column="ZDY4" jdbcType="VARCHAR" property="zdy4" />
+    <result column="ZDY5" jdbcType="VARCHAR" property="zdy5" />
+    <result column="ZDY6" jdbcType="VARCHAR" property="zdy6" />
+    <result column="ZDY7" jdbcType="VARCHAR" property="zdy7" />
+    <result column="CallType" jdbcType="INTEGER" property="calltype" />
+    <result column="ZDY8" jdbcType="VARCHAR" property="zdy8" />
+    <result column="ZDY9" jdbcType="VARCHAR" property="zdy9" />
+    <result column="ZDY10" jdbcType="VARCHAR" property="zdy10" />
+    <result column="ZDY11" jdbcType="VARCHAR" property="zdy11" />
+    <result column="LastCallResult" jdbcType="VARCHAR" property="lastcallresult" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    <result column="XP" jdbcType="LONGVARBINARY" property="xp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Recid, KHBH, CompanyName, CompanyAddr, Remarks, VIP, ContactorType, Intention, Area, 
+    Workerid, WorkerName, FirstCallTime, ZDY1, ZDY2, ZDY3, LastContactTime, ZDY4, ZDY5, 
+    ZDY6, ZDY7, CallType, ZDY8, ZDY9, ZDY10, ZDY11, LastCallResult
+  </sql>
+  <sql id="Blob_Column_List">
+    XP
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomerExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Hion_Customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Hion_Customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Hion_Customer
+    where Recid = #{recid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Hion_Customer
+    where Recid = #{recid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomerExample">
+    delete from Hion_Customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    insert into Hion_Customer (Recid, KHBH, CompanyName, 
+      CompanyAddr, Remarks, VIP, 
+      ContactorType, Intention, Area, 
+      Workerid, WorkerName, FirstCallTime, 
+      ZDY1, ZDY2, ZDY3, 
+      LastContactTime, ZDY4, ZDY5, 
+      ZDY6, ZDY7, CallType, 
+      ZDY8, ZDY9, ZDY10, 
+      ZDY11, LastCallResult, XP
+      )
+    values (#{recid,jdbcType=INTEGER}, #{khbh,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{companyaddr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{vip,jdbcType=VARCHAR}, 
+      #{contactortype,jdbcType=VARCHAR}, #{intention,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{workerid,jdbcType=VARCHAR}, #{workername,jdbcType=VARCHAR}, #{firstcalltime,jdbcType=VARCHAR}, 
+      #{zdy1,jdbcType=VARCHAR}, #{zdy2,jdbcType=VARCHAR}, #{zdy3,jdbcType=VARCHAR}, 
+      #{lastcontacttime,jdbcType=VARCHAR}, #{zdy4,jdbcType=VARCHAR}, #{zdy5,jdbcType=VARCHAR}, 
+      #{zdy6,jdbcType=VARCHAR}, #{zdy7,jdbcType=VARCHAR}, #{calltype,jdbcType=INTEGER}, 
+      #{zdy8,jdbcType=VARCHAR}, #{zdy9,jdbcType=VARCHAR}, #{zdy10,jdbcType=VARCHAR}, 
+      #{zdy11,jdbcType=VARCHAR}, #{lastcallresult,jdbcType=VARCHAR}, #{xp,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    insert into Hion_Customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        Recid,
+      </if>
+      <if test="khbh != null">
+        KHBH,
+      </if>
+      <if test="companyname != null">
+        CompanyName,
+      </if>
+      <if test="companyaddr != null">
+        CompanyAddr,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+      <if test="vip != null">
+        VIP,
+      </if>
+      <if test="contactortype != null">
+        ContactorType,
+      </if>
+      <if test="intention != null">
+        Intention,
+      </if>
+      <if test="area != null">
+        Area,
+      </if>
+      <if test="workerid != null">
+        Workerid,
+      </if>
+      <if test="workername != null">
+        WorkerName,
+      </if>
+      <if test="firstcalltime != null">
+        FirstCallTime,
+      </if>
+      <if test="zdy1 != null">
+        ZDY1,
+      </if>
+      <if test="zdy2 != null">
+        ZDY2,
+      </if>
+      <if test="zdy3 != null">
+        ZDY3,
+      </if>
+      <if test="lastcontacttime != null">
+        LastContactTime,
+      </if>
+      <if test="zdy4 != null">
+        ZDY4,
+      </if>
+      <if test="zdy5 != null">
+        ZDY5,
+      </if>
+      <if test="zdy6 != null">
+        ZDY6,
+      </if>
+      <if test="zdy7 != null">
+        ZDY7,
+      </if>
+      <if test="calltype != null">
+        CallType,
+      </if>
+      <if test="zdy8 != null">
+        ZDY8,
+      </if>
+      <if test="zdy9 != null">
+        ZDY9,
+      </if>
+      <if test="zdy10 != null">
+        ZDY10,
+      </if>
+      <if test="zdy11 != null">
+        ZDY11,
+      </if>
+      <if test="lastcallresult != null">
+        LastCallResult,
+      </if>
+      <if test="xp != null">
+        XP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        #{recid,jdbcType=INTEGER},
+      </if>
+      <if test="khbh != null">
+        #{khbh,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null">
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddr != null">
+        #{companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="vip != null">
+        #{vip,jdbcType=VARCHAR},
+      </if>
+      <if test="contactortype != null">
+        #{contactortype,jdbcType=VARCHAR},
+      </if>
+      <if test="intention != null">
+        #{intention,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="workerid != null">
+        #{workerid,jdbcType=VARCHAR},
+      </if>
+      <if test="workername != null">
+        #{workername,jdbcType=VARCHAR},
+      </if>
+      <if test="firstcalltime != null">
+        #{firstcalltime,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy1 != null">
+        #{zdy1,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy2 != null">
+        #{zdy2,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy3 != null">
+        #{zdy3,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcontacttime != null">
+        #{lastcontacttime,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy4 != null">
+        #{zdy4,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy5 != null">
+        #{zdy5,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy6 != null">
+        #{zdy6,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy7 != null">
+        #{zdy7,jdbcType=VARCHAR},
+      </if>
+      <if test="calltype != null">
+        #{calltype,jdbcType=INTEGER},
+      </if>
+      <if test="zdy8 != null">
+        #{zdy8,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy9 != null">
+        #{zdy9,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy10 != null">
+        #{zdy10,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy11 != null">
+        #{zdy11,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcallresult != null">
+        #{lastcallresult,jdbcType=VARCHAR},
+      </if>
+      <if test="xp != null">
+        #{xp,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomerExample" resultType="java.lang.Long">
+    select count(*) from Hion_Customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Hion_Customer
+    <set>
+      <if test="record.recid != null">
+        Recid = #{record.recid,jdbcType=INTEGER},
+      </if>
+      <if test="record.khbh != null">
+        KHBH = #{record.khbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyname != null">
+        CompanyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyaddr != null">
+        CompanyAddr = #{record.companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vip != null">
+        VIP = #{record.vip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactortype != null">
+        ContactorType = #{record.contactortype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intention != null">
+        Intention = #{record.intention,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        Area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workerid != null">
+        Workerid = #{record.workerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workername != null">
+        WorkerName = #{record.workername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstcalltime != null">
+        FirstCallTime = #{record.firstcalltime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy1 != null">
+        ZDY1 = #{record.zdy1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy2 != null">
+        ZDY2 = #{record.zdy2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy3 != null">
+        ZDY3 = #{record.zdy3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastcontacttime != null">
+        LastContactTime = #{record.lastcontacttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy4 != null">
+        ZDY4 = #{record.zdy4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy5 != null">
+        ZDY5 = #{record.zdy5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy6 != null">
+        ZDY6 = #{record.zdy6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy7 != null">
+        ZDY7 = #{record.zdy7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.calltype != null">
+        CallType = #{record.calltype,jdbcType=INTEGER},
+      </if>
+      <if test="record.zdy8 != null">
+        ZDY8 = #{record.zdy8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy9 != null">
+        ZDY9 = #{record.zdy9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy10 != null">
+        ZDY10 = #{record.zdy10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy11 != null">
+        ZDY11 = #{record.zdy11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastcallresult != null">
+        LastCallResult = #{record.lastcallresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xp != null">
+        XP = #{record.xp,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update Hion_Customer
+    set Recid = #{record.recid,jdbcType=INTEGER},
+      KHBH = #{record.khbh,jdbcType=VARCHAR},
+      CompanyName = #{record.companyname,jdbcType=VARCHAR},
+      CompanyAddr = #{record.companyaddr,jdbcType=VARCHAR},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      VIP = #{record.vip,jdbcType=VARCHAR},
+      ContactorType = #{record.contactortype,jdbcType=VARCHAR},
+      Intention = #{record.intention,jdbcType=VARCHAR},
+      Area = #{record.area,jdbcType=VARCHAR},
+      Workerid = #{record.workerid,jdbcType=VARCHAR},
+      WorkerName = #{record.workername,jdbcType=VARCHAR},
+      FirstCallTime = #{record.firstcalltime,jdbcType=VARCHAR},
+      ZDY1 = #{record.zdy1,jdbcType=VARCHAR},
+      ZDY2 = #{record.zdy2,jdbcType=VARCHAR},
+      ZDY3 = #{record.zdy3,jdbcType=VARCHAR},
+      LastContactTime = #{record.lastcontacttime,jdbcType=VARCHAR},
+      ZDY4 = #{record.zdy4,jdbcType=VARCHAR},
+      ZDY5 = #{record.zdy5,jdbcType=VARCHAR},
+      ZDY6 = #{record.zdy6,jdbcType=VARCHAR},
+      ZDY7 = #{record.zdy7,jdbcType=VARCHAR},
+      CallType = #{record.calltype,jdbcType=INTEGER},
+      ZDY8 = #{record.zdy8,jdbcType=VARCHAR},
+      ZDY9 = #{record.zdy9,jdbcType=VARCHAR},
+      ZDY10 = #{record.zdy10,jdbcType=VARCHAR},
+      ZDY11 = #{record.zdy11,jdbcType=VARCHAR},
+      LastCallResult = #{record.lastcallresult,jdbcType=VARCHAR},
+      XP = #{record.xp,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Hion_Customer
+    set Recid = #{record.recid,jdbcType=INTEGER},
+      KHBH = #{record.khbh,jdbcType=VARCHAR},
+      CompanyName = #{record.companyname,jdbcType=VARCHAR},
+      CompanyAddr = #{record.companyaddr,jdbcType=VARCHAR},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      VIP = #{record.vip,jdbcType=VARCHAR},
+      ContactorType = #{record.contactortype,jdbcType=VARCHAR},
+      Intention = #{record.intention,jdbcType=VARCHAR},
+      Area = #{record.area,jdbcType=VARCHAR},
+      Workerid = #{record.workerid,jdbcType=VARCHAR},
+      WorkerName = #{record.workername,jdbcType=VARCHAR},
+      FirstCallTime = #{record.firstcalltime,jdbcType=VARCHAR},
+      ZDY1 = #{record.zdy1,jdbcType=VARCHAR},
+      ZDY2 = #{record.zdy2,jdbcType=VARCHAR},
+      ZDY3 = #{record.zdy3,jdbcType=VARCHAR},
+      LastContactTime = #{record.lastcontacttime,jdbcType=VARCHAR},
+      ZDY4 = #{record.zdy4,jdbcType=VARCHAR},
+      ZDY5 = #{record.zdy5,jdbcType=VARCHAR},
+      ZDY6 = #{record.zdy6,jdbcType=VARCHAR},
+      ZDY7 = #{record.zdy7,jdbcType=VARCHAR},
+      CallType = #{record.calltype,jdbcType=INTEGER},
+      ZDY8 = #{record.zdy8,jdbcType=VARCHAR},
+      ZDY9 = #{record.zdy9,jdbcType=VARCHAR},
+      ZDY10 = #{record.zdy10,jdbcType=VARCHAR},
+      ZDY11 = #{record.zdy11,jdbcType=VARCHAR},
+      LastCallResult = #{record.lastcallresult,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    update Hion_Customer
+    <set>
+      <if test="khbh != null">
+        KHBH = #{khbh,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null">
+        CompanyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddr != null">
+        CompanyAddr = #{companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="vip != null">
+        VIP = #{vip,jdbcType=VARCHAR},
+      </if>
+      <if test="contactortype != null">
+        ContactorType = #{contactortype,jdbcType=VARCHAR},
+      </if>
+      <if test="intention != null">
+        Intention = #{intention,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        Area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="workerid != null">
+        Workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+      <if test="workername != null">
+        WorkerName = #{workername,jdbcType=VARCHAR},
+      </if>
+      <if test="firstcalltime != null">
+        FirstCallTime = #{firstcalltime,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy1 != null">
+        ZDY1 = #{zdy1,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy2 != null">
+        ZDY2 = #{zdy2,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy3 != null">
+        ZDY3 = #{zdy3,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcontacttime != null">
+        LastContactTime = #{lastcontacttime,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy4 != null">
+        ZDY4 = #{zdy4,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy5 != null">
+        ZDY5 = #{zdy5,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy6 != null">
+        ZDY6 = #{zdy6,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy7 != null">
+        ZDY7 = #{zdy7,jdbcType=VARCHAR},
+      </if>
+      <if test="calltype != null">
+        CallType = #{calltype,jdbcType=INTEGER},
+      </if>
+      <if test="zdy8 != null">
+        ZDY8 = #{zdy8,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy9 != null">
+        ZDY9 = #{zdy9,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy10 != null">
+        ZDY10 = #{zdy10,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy11 != null">
+        ZDY11 = #{zdy11,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcallresult != null">
+        LastCallResult = #{lastcallresult,jdbcType=VARCHAR},
+      </if>
+      <if test="xp != null">
+        XP = #{xp,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    update Hion_Customer
+    set KHBH = #{khbh,jdbcType=VARCHAR},
+      CompanyName = #{companyname,jdbcType=VARCHAR},
+      CompanyAddr = #{companyaddr,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      VIP = #{vip,jdbcType=VARCHAR},
+      ContactorType = #{contactortype,jdbcType=VARCHAR},
+      Intention = #{intention,jdbcType=VARCHAR},
+      Area = #{area,jdbcType=VARCHAR},
+      Workerid = #{workerid,jdbcType=VARCHAR},
+      WorkerName = #{workername,jdbcType=VARCHAR},
+      FirstCallTime = #{firstcalltime,jdbcType=VARCHAR},
+      ZDY1 = #{zdy1,jdbcType=VARCHAR},
+      ZDY2 = #{zdy2,jdbcType=VARCHAR},
+      ZDY3 = #{zdy3,jdbcType=VARCHAR},
+      LastContactTime = #{lastcontacttime,jdbcType=VARCHAR},
+      ZDY4 = #{zdy4,jdbcType=VARCHAR},
+      ZDY5 = #{zdy5,jdbcType=VARCHAR},
+      ZDY6 = #{zdy6,jdbcType=VARCHAR},
+      ZDY7 = #{zdy7,jdbcType=VARCHAR},
+      CallType = #{calltype,jdbcType=INTEGER},
+      ZDY8 = #{zdy8,jdbcType=VARCHAR},
+      ZDY9 = #{zdy9,jdbcType=VARCHAR},
+      ZDY10 = #{zdy10,jdbcType=VARCHAR},
+      ZDY11 = #{zdy11,jdbcType=VARCHAR},
+      LastCallResult = #{lastcallresult,jdbcType=VARCHAR},
+      XP = #{xp,jdbcType=LONGVARBINARY}
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    update Hion_Customer
+    set KHBH = #{khbh,jdbcType=VARCHAR},
+      CompanyName = #{companyname,jdbcType=VARCHAR},
+      CompanyAddr = #{companyaddr,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      VIP = #{vip,jdbcType=VARCHAR},
+      ContactorType = #{contactortype,jdbcType=VARCHAR},
+      Intention = #{intention,jdbcType=VARCHAR},
+      Area = #{area,jdbcType=VARCHAR},
+      Workerid = #{workerid,jdbcType=VARCHAR},
+      WorkerName = #{workername,jdbcType=VARCHAR},
+      FirstCallTime = #{firstcalltime,jdbcType=VARCHAR},
+      ZDY1 = #{zdy1,jdbcType=VARCHAR},
+      ZDY2 = #{zdy2,jdbcType=VARCHAR},
+      ZDY3 = #{zdy3,jdbcType=VARCHAR},
+      LastContactTime = #{lastcontacttime,jdbcType=VARCHAR},
+      ZDY4 = #{zdy4,jdbcType=VARCHAR},
+      ZDY5 = #{zdy5,jdbcType=VARCHAR},
+      ZDY6 = #{zdy6,jdbcType=VARCHAR},
+      ZDY7 = #{zdy7,jdbcType=VARCHAR},
+      CallType = #{calltype,jdbcType=INTEGER},
+      ZDY8 = #{zdy8,jdbcType=VARCHAR},
+      ZDY9 = #{zdy9,jdbcType=VARCHAR},
+      ZDY10 = #{zdy10,jdbcType=VARCHAR},
+      ZDY11 = #{zdy11,jdbcType=VARCHAR},
+      LastCallResult = #{lastcallresult,jdbcType=VARCHAR}
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+
+
+<resultMap id="GetNvarcharMap" type="com.aiBanShi.DianShiNet.dto.OneNvarchar">
+  <result column="KHBH" jdbcType="VARCHAR" property="khbh" />
+</resultMap>
+
+<select id="selectAllNotNullKhbh" resultMap="GetNvarcharMap">
+  SELECT KHBH FROM hion_Customer WHERE KHBH IS NOT NULL
+</select>
+
+
+
+</mapper>

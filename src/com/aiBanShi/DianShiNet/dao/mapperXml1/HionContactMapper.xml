@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiBanShi.DianShiNet.dao.mapperJava1.HionContactMapper">
+  <resultMap id="BaseResultMap" type="com.aiBanShi.DianShiNet.dto.HionContact">
+    <id column="Recid" jdbcType="INTEGER" property="recid" />
+    <result column="KHBH" jdbcType="VARCHAR" property="khbh" />
+    <result column="Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="Duty" jdbcType="VARCHAR" property="duty" />
+    <result column="Mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="OfficePhone" jdbcType="VARCHAR" property="officephone" />
+    <result column="Ext" jdbcType="VARCHAR" property="ext" />
+    <result column="HomePhone" jdbcType="VARCHAR" property="homephone" />
+    <result column="OtherPhone" jdbcType="VARCHAR" property="otherphone" />
+    <result column="Fax" jdbcType="VARCHAR" property="fax" />
+    <result column="ContactAddr" jdbcType="VARCHAR" property="contactaddr" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="MSN" jdbcType="VARCHAR" property="msn" />
+    <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="DefaultLXR" jdbcType="BIT" property="defaultlxr" />
+    <result column="ZDY12" jdbcType="VARCHAR" property="zdy12" />
+    <result column="ZDY13" jdbcType="VARCHAR" property="zdy13" />
+    <result column="ZDY14" jdbcType="VARCHAR" property="zdy14" />
+    <result column="ZDY15" jdbcType="VARCHAR" property="zdy15" />
+    <result column="Remarks1" jdbcType="VARCHAR" property="remarks1" />
+    <result column="DefaultLXR1" jdbcType="BIT" property="defaultlxr1" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Recid, KHBH, Contact, Duty, Mobile, OfficePhone, Ext, HomePhone, OtherPhone, Fax, 
+    ContactAddr, QQ, Email, MSN, Remarks, DefaultLXR, ZDY12, ZDY13, ZDY14, ZDY15, Remarks1, 
+    DefaultLXR1
+  </sql>
+  <select id="selectByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionContactExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Hion_Contact
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Hion_Contact
+    where Recid = #{recid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Hion_Contact
+    where Recid = #{recid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionContactExample">
+    delete from Hion_Contact
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    insert into Hion_Contact (Recid, KHBH, Contact, 
+      Duty, Mobile, OfficePhone, 
+      Ext, HomePhone, OtherPhone, 
+      Fax, ContactAddr, QQ, 
+      Email, MSN, Remarks, 
+      DefaultLXR, ZDY12, ZDY13, 
+      ZDY14, ZDY15, Remarks1, 
+      DefaultLXR1)
+    values (#{recid,jdbcType=INTEGER}, #{khbh,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{duty,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{officephone,jdbcType=VARCHAR}, 
+      #{ext,jdbcType=VARCHAR}, #{homephone,jdbcType=VARCHAR}, #{otherphone,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{contactaddr,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{msn,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{defaultlxr,jdbcType=BIT}, #{zdy12,jdbcType=VARCHAR}, #{zdy13,jdbcType=VARCHAR}, 
+      #{zdy14,jdbcType=VARCHAR}, #{zdy15,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, 
+      #{defaultlxr1,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    insert into Hion_Contact
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        Recid,
+      </if>
+      <if test="khbh != null">
+        KHBH,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="duty != null">
+        Duty,
+      </if>
+      <if test="mobile != null">
+        Mobile,
+      </if>
+      <if test="officephone != null">
+        OfficePhone,
+      </if>
+      <if test="ext != null">
+        Ext,
+      </if>
+      <if test="homephone != null">
+        HomePhone,
+      </if>
+      <if test="otherphone != null">
+        OtherPhone,
+      </if>
+      <if test="fax != null">
+        Fax,
+      </if>
+      <if test="contactaddr != null">
+        ContactAddr,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="msn != null">
+        MSN,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+      <if test="defaultlxr != null">
+        DefaultLXR,
+      </if>
+      <if test="zdy12 != null">
+        ZDY12,
+      </if>
+      <if test="zdy13 != null">
+        ZDY13,
+      </if>
+      <if test="zdy14 != null">
+        ZDY14,
+      </if>
+      <if test="zdy15 != null">
+        ZDY15,
+      </if>
+      <if test="remarks1 != null">
+        Remarks1,
+      </if>
+      <if test="defaultlxr1 != null">
+        DefaultLXR1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        #{recid,jdbcType=INTEGER},
+      </if>
+      <if test="khbh != null">
+        #{khbh,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null">
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="homephone != null">
+        #{homephone,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphone != null">
+        #{otherphone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="contactaddr != null">
+        #{contactaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultlxr != null">
+        #{defaultlxr,jdbcType=BIT},
+      </if>
+      <if test="zdy12 != null">
+        #{zdy12,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy13 != null">
+        #{zdy13,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy14 != null">
+        #{zdy14,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy15 != null">
+        #{zdy15,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null">
+        #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultlxr1 != null">
+        #{defaultlxr1,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionContactExample" resultType="java.lang.Long">
+    select count(*) from Hion_Contact
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Hion_Contact
+    <set>
+      <if test="record.recid != null">
+        Recid = #{record.recid,jdbcType=INTEGER},
+      </if>
+      <if test="record.khbh != null">
+        KHBH = #{record.khbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null">
+        Contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duty != null">
+        Duty = #{record.duty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officephone != null">
+        OfficePhone = #{record.officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null">
+        Ext = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homephone != null">
+        HomePhone = #{record.homephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherphone != null">
+        OtherPhone = #{record.otherphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null">
+        Fax = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactaddr != null">
+        ContactAddr = #{record.contactaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        Email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.msn != null">
+        MSN = #{record.msn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultlxr != null">
+        DefaultLXR = #{record.defaultlxr,jdbcType=BIT},
+      </if>
+      <if test="record.zdy12 != null">
+        ZDY12 = #{record.zdy12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy13 != null">
+        ZDY13 = #{record.zdy13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy14 != null">
+        ZDY14 = #{record.zdy14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdy15 != null">
+        ZDY15 = #{record.zdy15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks1 != null">
+        Remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultlxr1 != null">
+        DefaultLXR1 = #{record.defaultlxr1,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Hion_Contact
+    set Recid = #{record.recid,jdbcType=INTEGER},
+      KHBH = #{record.khbh,jdbcType=VARCHAR},
+      Contact = #{record.contact,jdbcType=VARCHAR},
+      Duty = #{record.duty,jdbcType=VARCHAR},
+      Mobile = #{record.mobile,jdbcType=VARCHAR},
+      OfficePhone = #{record.officephone,jdbcType=VARCHAR},
+      Ext = #{record.ext,jdbcType=VARCHAR},
+      HomePhone = #{record.homephone,jdbcType=VARCHAR},
+      OtherPhone = #{record.otherphone,jdbcType=VARCHAR},
+      Fax = #{record.fax,jdbcType=VARCHAR},
+      ContactAddr = #{record.contactaddr,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      Email = #{record.email,jdbcType=VARCHAR},
+      MSN = #{record.msn,jdbcType=VARCHAR},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      DefaultLXR = #{record.defaultlxr,jdbcType=BIT},
+      ZDY12 = #{record.zdy12,jdbcType=VARCHAR},
+      ZDY13 = #{record.zdy13,jdbcType=VARCHAR},
+      ZDY14 = #{record.zdy14,jdbcType=VARCHAR},
+      ZDY15 = #{record.zdy15,jdbcType=VARCHAR},
+      Remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+      DefaultLXR1 = #{record.defaultlxr1,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    update Hion_Contact
+    <set>
+      <if test="khbh != null">
+        KHBH = #{khbh,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null">
+        Duty = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        OfficePhone = #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        Ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="homephone != null">
+        HomePhone = #{homephone,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphone != null">
+        OtherPhone = #{otherphone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        Fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="contactaddr != null">
+        ContactAddr = #{contactaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        MSN = #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultlxr != null">
+        DefaultLXR = #{defaultlxr,jdbcType=BIT},
+      </if>
+      <if test="zdy12 != null">
+        ZDY12 = #{zdy12,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy13 != null">
+        ZDY13 = #{zdy13,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy14 != null">
+        ZDY14 = #{zdy14,jdbcType=VARCHAR},
+      </if>
+      <if test="zdy15 != null">
+        ZDY15 = #{zdy15,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null">
+        Remarks1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultlxr1 != null">
+        DefaultLXR1 = #{defaultlxr1,jdbcType=BIT},
+      </if>
+    </set>
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    update Hion_Contact
+    set KHBH = #{khbh,jdbcType=VARCHAR},
+      Contact = #{contact,jdbcType=VARCHAR},
+      Duty = #{duty,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      OfficePhone = #{officephone,jdbcType=VARCHAR},
+      Ext = #{ext,jdbcType=VARCHAR},
+      HomePhone = #{homephone,jdbcType=VARCHAR},
+      OtherPhone = #{otherphone,jdbcType=VARCHAR},
+      Fax = #{fax,jdbcType=VARCHAR},
+      ContactAddr = #{contactaddr,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      MSN = #{msn,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      DefaultLXR = #{defaultlxr,jdbcType=BIT},
+      ZDY12 = #{zdy12,jdbcType=VARCHAR},
+      ZDY13 = #{zdy13,jdbcType=VARCHAR},
+      ZDY14 = #{zdy14,jdbcType=VARCHAR},
+      ZDY15 = #{zdy15,jdbcType=VARCHAR},
+      Remarks1 = #{remarks1,jdbcType=VARCHAR},
+      DefaultLXR1 = #{defaultlxr1,jdbcType=BIT}
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+</mapper>
