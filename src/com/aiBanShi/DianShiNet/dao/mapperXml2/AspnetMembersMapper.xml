@@ -913,7 +913,7 @@
     <result column="ProductName" jdbcType="VARCHAR" property="productName"/>
   </resultMap>
 <!--OrderStatus=2表示已经付款 ,最近购买的几件商品-->
-  <!--<select id="selectInfoFromOrderTabByUserId" resultMap="productNameMap">
+  <select id="selectInfoFromOrderTabByUserId" resultMap="productNameMap">
     SELECT ProductName FROM Hishop_Products WHERE ProductId
     IN
     (
@@ -921,9 +921,9 @@
       IN
       (SELECT top(10) OrderId FROM Hishop_Orders WHERE OrderStatus=2 AND UserId=#{userId} ORDER BY PayDate DESC)
     )
-  </select>-->
+  </select>
 
-  <select id="selectInfoFromOrderTabByUserId" resultMap="productNameMap">
+  <!--<select id="selectInfoFromOrderTabByUserId" resultMap="productNameMap">
     SELECT ProductName FROM Hishop_Products WHERE ProductId
     IN
     (
@@ -931,7 +931,7 @@
     IN
     (SELECT top(10) OrderId FROM Hishop_Orders WHERE UserId=#{userId} ORDER BY PayDate DESC)
     )
-  </select>
+  </select>-->
 
 
 </mapper>
