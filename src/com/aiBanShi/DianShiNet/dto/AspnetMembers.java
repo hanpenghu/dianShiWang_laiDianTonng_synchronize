@@ -12,7 +12,7 @@ public class AspnetMembers {
 //会员等级id
     private Integer gradeid=1;
 //用户名
-    private String username="systemDefault";
+    private String username="noWrite";
 //密码默认是123456,下面是加盐后在数据库显示的密码
     private String password="Sbdt0qvW11dS0lrZss3IKyfpFEU=";
 
@@ -24,9 +24,9 @@ public class AspnetMembers {
 //创建时间
     private Date createdate=new Date();
 
-    private String email="systemDefault";
+    private String email="noWrite";
 
-    private String realname="systemDefault";
+    private String realname="noWrite";
 
     private String identitycard;
 

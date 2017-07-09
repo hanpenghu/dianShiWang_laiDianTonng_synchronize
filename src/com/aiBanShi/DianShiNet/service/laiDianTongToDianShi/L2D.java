@@ -8,6 +8,7 @@ import com.aiBanShi.DianShiNet.utils.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -28,8 +29,14 @@ public class L2D {
     HionCustomerMapper hionCustomerMapper;
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
+    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
     public void L2d(){
+
         try {
+            System.out.println();
+            System.out.println();
+            Date date1 = new Date();
+            System.out.println("来电通同步到点识网该次开始时间"+date1);
             //拿到所有的KHBH
             List<OneNvarchar> oneNvarchars = hionCustomerMapper.selectAllNotNullKhbh();
             //循环所有KHBH
@@ -78,9 +85,12 @@ public class L2D {
                 } catch (Exception e) {e.printStackTrace();}
 
             }
+            Date date2 = new Date();
+            System.out.println("来电通同步到点识网该次结束时间"+date2);
+            System.out.println("!!!!!!来电通同步到点识网该次耗时"+((date2.getTime()-date1.getTime())/1000)+"秒,合计"+((date2.getTime()-date1.getTime())/1000/60)+"分钟!!!!!!!!!!!!!");
+            System.out.println();
+            System.out.println();
         } catch (Exception e) {e.printStackTrace();}
-
-
 
     }
 
