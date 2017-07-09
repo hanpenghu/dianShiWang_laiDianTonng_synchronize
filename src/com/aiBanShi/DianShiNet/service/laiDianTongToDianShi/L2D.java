@@ -29,44 +29,57 @@ public class L2D {
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
     public void L2d(){
-        
-        //拿到所有的KHBH
-        List<OneNvarchar> oneNvarchars = hionCustomerMapper.selectAllNotNullKhbh();
-        //循环所有KHBH
-        for (OneNvarchar on:oneNvarchars){
-            //得到当前客户编号
-            String khbh=on.getKhbh();
-            HionCustomerExample hionCustomerExample=new HionCustomerExample();
-            hionCustomerExample.createCriteria().andKhbhEqualTo(khbh);
-            List<HionCustomer> hionCustomers = hionCustomerMapper.selectByExample(hionCustomerExample);
-            HionCustomer hionCustomer = hionCustomers.get(0);
+        try {
+            //拿到所有的KHBH
+            List<OneNvarchar> oneNvarchars = hionCustomerMapper.selectAllNotNullKhbh();
+            //循环所有KHBH
+            for (OneNvarchar on:oneNvarchars){
+                try {
+                    //得到当前客户编号
+                    String khbh=on.getKhbh();
+                    //先判断点识网的数据库有没有这个客户编号khbh
+                    AspnetMembersExample aspnetMembersExample=new AspnetMembersExample();
+                    aspnetMembersExample.createCriteria().andUsernameEqualTo(khbh.trim());
+                    long khbhNum = aspnetMembersMapper.countByExample(aspnetMembersExample);
+                    //如果在点识网有这个数据,就跳过该次,进行下次循环
+                    if(khbhNum>0){
+                        continue;
+                    }
+                    //如果点识网没有这个数据(khbh),就继续插入
+                    HionCustomerExample hionCustomerExample=new HionCustomerExample();
+                    hionCustomerExample.createCriteria().andKhbhEqualTo(khbh);
+                    List<HionCustomer> hionCustomers = hionCustomerMapper.selectByExample(hionCustomerExample);
+                    HionCustomer hionCustomer = hionCustomers.get(0);
 
 
-            HionContactExample hionContactExample=new HionContactExample();
-            hionContactExample.createCriteria().andKhbhEqualTo(khbh);
-            List<HionContact> hionContacts = hionContactMapper.selectByExample(hionContactExample);
-            HionContact hionContact = hionContacts.get(0);
+                    HionContactExample hionContactExample=new HionContactExample();
+                    hionContactExample.createCriteria().andKhbhEqualTo(khbh);
+                    List<HionContact> hionContacts = hionContactMapper.selectByExample(hionContactExample);
+                    HionContact hionContact = hionContacts.get(0);
 
-            AspnetMembers aspnetMembers=new AspnetMembers();
-            aspnetMembers.setUsername(hionCustomer.getKhbh());
+                    AspnetMembers aspnetMembers=new AspnetMembers();
+                    aspnetMembers.setUsername(hionCustomer.getKhbh().trim());
 
-            String firstcalltime = hionCustomer.getFirstcalltime();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date=null;
-            try {date = sdf.parse(firstcalltime);} catch (ParseException e) {e.printStackTrace();}
-            aspnetMembers.setCreatedate(date);
-            aspnetMembers.setRealname(hionContact.getContact());
-            aspnetMembers.setCellphone(hionContact.getMobile());
-            aspnetMembers.setAddress(hionContact.getContactaddr());
-            aspnetMembers.setQq(hionContact.getQq());
-            aspnetMembers.setEmail(hionContact.getEmail());
-            //自我约定,9999来自于来电通
-            aspnetMembers.setRegisteredsource(9999);
+                    String firstcalltime = hionCustomer.getFirstcalltime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date=null;
+                    try {date = sdf.parse(firstcalltime);} catch (ParseException e) {e.printStackTrace();}
+                    aspnetMembers.setCreatedate(date);
+                    aspnetMembers.setRealname(hionContact.getContact());
+                    aspnetMembers.setCellphone(hionContact.getMobile());
+                    aspnetMembers.setAddress(hionContact.getContactaddr());
+                    aspnetMembers.setQq(hionContact.getQq());
+                    aspnetMembers.setEmail(hionContact.getEmail());
+                    //自我约定,9999来自于来电通
+                    aspnetMembers.setRegisteredsource(9999);
 
 
-            aspnetMembersMapper.insert(aspnetMembers);
+                    aspnetMembersMapper.insert(aspnetMembers);
+                } catch (Exception e) {e.printStackTrace();}
 
-        }
+            }
+        } catch (Exception e) {e.printStackTrace();}
+
 
 
     }

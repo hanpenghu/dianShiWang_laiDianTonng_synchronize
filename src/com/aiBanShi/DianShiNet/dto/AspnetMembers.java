@@ -1,5 +1,7 @@
 package com.aiBanShi.DianShiNet.dto;
 
+import com.aiBanShi.DianShiNet.utilsOfHanHan.MD5Utils;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,10 +13,10 @@ public class AspnetMembers {
     private Integer gradeid=1;
 //用户名
     private String username="systemDefault";
+//密码默认是123456,下面是加盐后在数据库显示的密码
+    private String password="Sbdt0qvW11dS0lrZss3IKyfpFEU=";
 
-    private String password="systemDefault";
-
-    private String passwordsalt="systemDefault";
+    private String passwordsalt="GEDYJAVVKNNRPDSIVBKAHNDMULNQBPEWQNSRGBOLBKPIAXGSVBLXJXLSBRDXNEUVJRABKABTMYZXYUMWEUVADHNTCAQPXRYWPUYIWFHUZSKKYNUHEGTTJTSCEHYKKMWV";
 
     private String passwordquestion;
 
@@ -88,6 +90,10 @@ public class AspnetMembers {
     private String tagids;
 
     private Boolean issendappcoupons;
+
+    public AspnetMembers() {
+
+    }
 
     public Integer getUserid() {
         return userid;
