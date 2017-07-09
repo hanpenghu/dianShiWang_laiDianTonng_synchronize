@@ -3,6 +3,8 @@ package com.aiBanShi.DianShiNet.dao.mapperJava2;
 import com.aiBanShi.DianShiNet.dto.AspnetMembers;
 import com.aiBanShi.DianShiNet.dto.AspnetMembersExample;
 import java.util.List;
+
+import com.aiBanShi.DianShiNet.dto.OrderInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface AspnetMembersMapper {
@@ -27,4 +29,8 @@ public interface AspnetMembersMapper {
     int updateByPrimaryKeySelective(AspnetMembers record);
 
     int updateByPrimaryKey(AspnetMembers record);
+
+    List<Integer> selectAllUserId();
+
+    List<OrderInfo> selectInfoFromOrderTabByUserId(@Param("userId") Integer userId);
 }

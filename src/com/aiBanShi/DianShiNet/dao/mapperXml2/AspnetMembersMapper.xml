@@ -620,7 +620,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <!--<update id="updateByExample" parameterType="map">
     update aspnet_Members
     set UserId = #{record.userid,jdbcType=INTEGER},
       ReferralUserId = #{record.referraluserid,jdbcType=INTEGER},
@@ -667,7 +667,62 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>-->
+
+
+
+  <update id="updateByExample" parameterType="map">
+    update aspnet_Members
+    set ReferralUserId = #{record.referraluserid,jdbcType=INTEGER},
+    GradeId = #{record.gradeid,jdbcType=INTEGER},
+    UserName = #{record.username,jdbcType=VARCHAR},
+    Password = #{record.password,jdbcType=VARCHAR},
+    PasswordSalt = #{record.passwordsalt,jdbcType=VARCHAR},
+    PasswordQuestion = #{record.passwordquestion,jdbcType=VARCHAR},
+    PasswordAnswer = #{record.passwordanswer,jdbcType=VARCHAR},
+    CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+    Email = #{record.email,jdbcType=VARCHAR},
+    RealName = #{record.realname,jdbcType=VARCHAR},
+    IdentityCard = #{record.identitycard,jdbcType=VARCHAR},
+    Picture = #{record.picture,jdbcType=VARCHAR},
+    Gender = #{record.gender,jdbcType=INTEGER},
+    BirthDate = #{record.birthdate,jdbcType=TIMESTAMP},
+    IsOpenBalance = #{record.isopenbalance,jdbcType=BIT},
+    TradePassword = #{record.tradepassword,jdbcType=VARCHAR},
+    TradePasswordSalt = #{record.tradepasswordsalt,jdbcType=VARCHAR},
+    OrderNumber = #{record.ordernumber,jdbcType=INTEGER},
+    Expenditure = #{record.expenditure,jdbcType=DECIMAL},
+    Points = #{record.points,jdbcType=INTEGER},
+    Balance = #{record.balance,jdbcType=DECIMAL},
+    RequestBalance = #{record.requestbalance,jdbcType=DECIMAL},
+    TopRegionId = #{record.topregionid,jdbcType=INTEGER},
+    RegionId = #{record.regionid,jdbcType=INTEGER},
+    Address = #{record.address,jdbcType=VARCHAR},
+    CellPhone = #{record.cellphone,jdbcType=VARCHAR},
+    QQ = #{record.qq,jdbcType=VARCHAR},
+    Wangwang = #{record.wangwang,jdbcType=VARCHAR},
+    WeChat = #{record.wechat,jdbcType=VARCHAR},
+    SessionId = #{record.sessionid,jdbcType=VARCHAR},
+    SessionEndTime = #{record.sessionendtime,jdbcType=TIMESTAMP},
+    EmailVerification = #{record.emailverification,jdbcType=BIT},
+    CellPhoneVerification = #{record.cellphoneverification,jdbcType=BIT},
+    RegisteredSource = #{record.registeredsource,jdbcType=INTEGER},
+    IsQuickLogin = #{record.isquicklogin,jdbcType=BIT},
+    IsLogined = #{record.islogined,jdbcType=BIT},
+    Unionid = #{record.unionid,jdbcType=VARCHAR},
+    IsSubscribe = #{record.issubscribe,jdbcType=BIT},
+    NickName = #{record.nickname,jdbcType=VARCHAR},
+    TagIds = #{record.tagids,jdbcType=VARCHAR},
+    IsSendAppCoupons = #{record.issendappcoupons,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
   </update>
+
+
+
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
     update aspnet_Members
     <set>
@@ -842,4 +897,41 @@
       IsSendAppCoupons = #{issendappcoupons,jdbcType=BIT}
     where UserId = #{userid,jdbcType=INTEGER}
   </update>
+
+
+
+
+  <!--wo zi ji jia de -->
+  <!--xuan chu suo you de UserId -->
+  <select id="selectAllUserId" resultType="java.lang.Integer">
+    SELECT UserId FROM aspnet_Members
+  </select>
+
+
+
+  <resultMap id="productNameMap" type="com.aiBanShi.DianShiNet.dto.OrderInfo">
+    <result column="ProductName" jdbcType="VARCHAR" property="productName"/>
+  </resultMap>
+<!--OrderStatus=2表示已经付款 ,最近购买的几件商品-->
+  <!--<select id="selectInfoFromOrderTabByUserId" resultMap="productNameMap">
+    SELECT ProductName FROM Hishop_Products WHERE ProductId
+    IN
+    (
+      SELECT ProductId FROM Hishop_OrderItems WHERE OrderId
+      IN
+      (SELECT top(10) OrderId FROM Hishop_Orders WHERE OrderStatus=2 AND UserId=#{userId} ORDER BY PayDate DESC)
+    )
+  </select>-->
+
+  <select id="selectInfoFromOrderTabByUserId" resultMap="productNameMap">
+    SELECT ProductName FROM Hishop_Products WHERE ProductId
+    IN
+    (
+    SELECT ProductId FROM Hishop_OrderItems WHERE OrderId
+    IN
+    (SELECT top(10) OrderId FROM Hishop_Orders WHERE UserId=#{userId} ORDER BY PayDate DESC)
+    )
+  </select>
+
+
 </mapper>

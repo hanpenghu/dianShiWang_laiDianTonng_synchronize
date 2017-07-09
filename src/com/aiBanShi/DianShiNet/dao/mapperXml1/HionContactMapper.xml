@@ -118,7 +118,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+  <!--<insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
     insert into Hion_Contact (Recid, KHBH, Contact, 
       Duty, Mobile, OfficePhone, 
       Ext, HomePhone, OtherPhone, 
@@ -135,7 +135,33 @@
       #{defaultlxr,jdbcType=BIT}, #{zdy12,jdbcType=VARCHAR}, #{zdy13,jdbcType=VARCHAR}, 
       #{zdy14,jdbcType=VARCHAR}, #{zdy15,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, 
       #{defaultlxr1,jdbcType=BIT})
+  </insert>-->
+
+
+  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    insert into Hion_Contact (KHBH, Contact,
+    Duty, Mobile, OfficePhone,
+    Ext, HomePhone, OtherPhone,
+    Fax, ContactAddr, QQ,
+    Email, MSN, Remarks,
+    DefaultLXR, ZDY12, ZDY13,
+    ZDY14, ZDY15, Remarks1,
+    DefaultLXR1)
+    values (#{khbh,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR},
+    #{duty,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{officephone,jdbcType=VARCHAR},
+    #{ext,jdbcType=VARCHAR}, #{homephone,jdbcType=VARCHAR}, #{otherphone,jdbcType=VARCHAR},
+    #{fax,jdbcType=VARCHAR}, #{contactaddr,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
+    #{email,jdbcType=VARCHAR}, #{msn,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
+    #{defaultlxr,jdbcType=BIT}, #{zdy12,jdbcType=VARCHAR}, #{zdy13,jdbcType=VARCHAR},
+    #{zdy14,jdbcType=VARCHAR}, #{zdy15,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR},
+    #{defaultlxr1,jdbcType=BIT})
   </insert>
+
+
+
+
+
+
   <insert id="insertSelective" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
     insert into Hion_Contact
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -355,7 +381,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <!--<update id="updateByExample" parameterType="map">
     update Hion_Contact
     set Recid = #{record.recid,jdbcType=INTEGER},
       KHBH = #{record.khbh,jdbcType=VARCHAR},
@@ -382,7 +408,37 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>-->
+
+
+  <update id="updateByExample" parameterType="map">
+    update Hion_Contact
+    set Contact = #{record.contact,jdbcType=VARCHAR},
+    Duty = #{record.duty,jdbcType=VARCHAR},
+    Mobile = #{record.mobile,jdbcType=VARCHAR},
+    OfficePhone = #{record.officephone,jdbcType=VARCHAR},
+    Ext = #{record.ext,jdbcType=VARCHAR},
+    HomePhone = #{record.homephone,jdbcType=VARCHAR},
+    OtherPhone = #{record.otherphone,jdbcType=VARCHAR},
+    Fax = #{record.fax,jdbcType=VARCHAR},
+    ContactAddr = #{record.contactaddr,jdbcType=VARCHAR},
+    QQ = #{record.qq,jdbcType=VARCHAR},
+    Email = #{record.email,jdbcType=VARCHAR},
+    MSN = #{record.msn,jdbcType=VARCHAR},
+    Remarks = #{record.remarks,jdbcType=VARCHAR},
+    DefaultLXR = #{record.defaultlxr,jdbcType=BIT},
+    ZDY12 = #{record.zdy12,jdbcType=VARCHAR},
+    ZDY13 = #{record.zdy13,jdbcType=VARCHAR},
+    ZDY14 = #{record.zdy14,jdbcType=VARCHAR},
+    ZDY15 = #{record.zdy15,jdbcType=VARCHAR},
+    Remarks1 = #{record.remarks1,jdbcType=VARCHAR},
+    DefaultLXR1 = #{record.defaultlxr1,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
   </update>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
     update Hion_Contact
     <set>

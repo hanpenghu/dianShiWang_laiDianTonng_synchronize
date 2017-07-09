@@ -48,11 +48,11 @@ public class L2D {
                     AspnetMembersExample aspnetMembersExample=new AspnetMembersExample();
                     aspnetMembersExample.createCriteria().andUsernameEqualTo(khbh.trim());
                     long khbhNum = aspnetMembersMapper.countByExample(aspnetMembersExample);
-                    //如果在点识网有这个数据,就跳过该次,进行下次循环
-                    if(khbhNum>0){
-                        continue;
-                    }
-                    //如果点识网没有这个数据(khbh),就继续插入
+
+
+
+
+
                     HionCustomerExample hionCustomerExample=new HionCustomerExample();
                     hionCustomerExample.createCriteria().andKhbhEqualTo(khbh);
                     List<HionCustomer> hionCustomers = hionCustomerMapper.selectByExample(hionCustomerExample);
@@ -80,8 +80,17 @@ public class L2D {
                     //自我约定,9999来自于来电通
                     aspnetMembers.setRegisteredsource(9999);
 
-
+//如果在点识网有这个数据,就更新并跳过该次,进行下次循环
+                    if(khbhNum>0){
+                        aspnetMembersMapper.updateByExample(aspnetMembers,aspnetMembersExample);
+                        continue;
+                    }
                     aspnetMembersMapper.insert(aspnetMembers);
+
+
+
+
+
                 } catch (Exception e) {e.printStackTrace();}
 
             }

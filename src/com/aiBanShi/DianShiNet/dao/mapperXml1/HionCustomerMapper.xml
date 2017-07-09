@@ -146,7 +146,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+ <!-- <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
     insert into Hion_Customer (Recid, KHBH, CompanyName, 
       CompanyAddr, Remarks, VIP, 
       ContactorType, Intention, Area, 
@@ -167,7 +167,40 @@
       #{zdy8,jdbcType=VARCHAR}, #{zdy9,jdbcType=VARCHAR}, #{zdy10,jdbcType=VARCHAR}, 
       #{zdy11,jdbcType=VARCHAR}, #{lastcallresult,jdbcType=VARCHAR}, #{xp,jdbcType=LONGVARBINARY}
       )
+  </insert>-->
+
+
+  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    insert into Hion_Customer (KHBH, CompanyName,
+    CompanyAddr, Remarks, VIP,
+    ContactorType, Intention, Area,
+    Workerid, WorkerName, FirstCallTime,
+    ZDY1, ZDY2, ZDY3,
+    LastContactTime, ZDY4, ZDY5,
+    ZDY6, ZDY7, CallType,
+    ZDY8, ZDY9, ZDY10,
+    ZDY11, LastCallResult, XP
+    )
+    values (#{khbh,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR},
+    #{companyaddr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{vip,jdbcType=VARCHAR},
+    #{contactortype,jdbcType=VARCHAR}, #{intention,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
+    #{workerid,jdbcType=VARCHAR}, #{workername,jdbcType=VARCHAR}, #{firstcalltime,jdbcType=VARCHAR},
+    #{zdy1,jdbcType=VARCHAR}, #{zdy2,jdbcType=VARCHAR}, #{zdy3,jdbcType=VARCHAR},
+    #{lastcontacttime,jdbcType=VARCHAR}, #{zdy4,jdbcType=VARCHAR}, #{zdy5,jdbcType=VARCHAR},
+    #{zdy6,jdbcType=VARCHAR}, #{zdy7,jdbcType=VARCHAR}, #{calltype,jdbcType=INTEGER},
+    #{zdy8,jdbcType=VARCHAR}, #{zdy9,jdbcType=VARCHAR}, #{zdy10,jdbcType=VARCHAR},
+    #{zdy11,jdbcType=VARCHAR}, #{lastcallresult,jdbcType=VARCHAR}, #{xp,jdbcType=LONGVARBINARY}
+    )
   </insert>
+
+
+
+
+
+
+
+
+
   <insert id="insertSelective" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
     insert into Hion_Customer
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -465,7 +498,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <!--<update id="updateByExample" parameterType="map">
     update Hion_Customer
     set Recid = #{record.recid,jdbcType=INTEGER},
       KHBH = #{record.khbh,jdbcType=VARCHAR},
@@ -496,7 +529,46 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>-->
+
+
+  <update id="updateByExample" parameterType="map">
+    update Hion_Customer
+    set CompanyName = #{record.companyname,jdbcType=VARCHAR},
+    CompanyAddr = #{record.companyaddr,jdbcType=VARCHAR},
+    Remarks = #{record.remarks,jdbcType=VARCHAR},
+    VIP = #{record.vip,jdbcType=VARCHAR},
+    ContactorType = #{record.contactortype,jdbcType=VARCHAR},
+    Intention = #{record.intention,jdbcType=VARCHAR},
+    Area = #{record.area,jdbcType=VARCHAR},
+    Workerid = #{record.workerid,jdbcType=VARCHAR},
+    WorkerName = #{record.workername,jdbcType=VARCHAR},
+    FirstCallTime = #{record.firstcalltime,jdbcType=VARCHAR},
+    ZDY1 = #{record.zdy1,jdbcType=VARCHAR},
+    ZDY2 = #{record.zdy2,jdbcType=VARCHAR},
+    ZDY3 = #{record.zdy3,jdbcType=VARCHAR},
+    LastContactTime = #{record.lastcontacttime,jdbcType=VARCHAR},
+    ZDY4 = #{record.zdy4,jdbcType=VARCHAR},
+    ZDY5 = #{record.zdy5,jdbcType=VARCHAR},
+    ZDY6 = #{record.zdy6,jdbcType=VARCHAR},
+    ZDY7 = #{record.zdy7,jdbcType=VARCHAR},
+    CallType = #{record.calltype,jdbcType=INTEGER},
+    ZDY8 = #{record.zdy8,jdbcType=VARCHAR},
+    ZDY9 = #{record.zdy9,jdbcType=VARCHAR},
+    ZDY10 = #{record.zdy10,jdbcType=VARCHAR},
+    ZDY11 = #{record.zdy11,jdbcType=VARCHAR},
+    LastCallResult = #{record.lastcallresult,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
   </update>
+
+
+
+
+
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
     update Hion_Customer
     <set>
