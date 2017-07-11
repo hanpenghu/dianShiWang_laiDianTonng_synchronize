@@ -27,4 +27,14 @@ public interface HionContactMapper {
     int updateByPrimaryKeySelective(HionContact record);
 
     int updateByPrimaryKey(HionContact record);
+
+    int updateContact(HionContact hionContact);
+
+    int updateMobel(HionContact hionContact);
+
+    int updateAddr(HionContact hionContact);
+
+    int updateQq(HionContact hionContact);
+
+    int updateEmail(HionContact hionContact);
 }

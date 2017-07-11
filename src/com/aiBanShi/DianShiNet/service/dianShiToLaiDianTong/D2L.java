@@ -18,7 +18,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017-07-05.
+ * Created by 韩寒 on 2017-07-05.
+ * 点识网同步到来电通
+ * //根据移动电话和办公电话蹦界面
  */
 @Component
 public class D2L {
@@ -60,7 +62,13 @@ public class D2L {
                     Integer userid = aspnetMembers.getUserid();
                     //得到该用户最近购买的前10件产品名字
                     List<OrderInfo> orderInfos = aspnetMembersMapper.selectInfoFromOrderTabByUserId(userid);
-
+//来电通的客户编号取海商的用户名(一个邮箱),但是来电通的客户编号不能有特殊符号,只能是字母和数字
+                    if(username.contains("@")){
+                        username=username.replace("@","");
+                    }
+                    if(username.contains(".")){
+                        username=username.replace(".","");
+                    }
 
                     HionContactExample hionContactExample=new HionContactExample();
                     hionContactExample.createCriteria().andKhbhEqualTo(username.trim());
@@ -73,6 +81,7 @@ public class D2L {
 
                     HionContact hionContact=new HionContact();
                     HionCustomer hionCustomer=new HionCustomer();
+
                     hionContact.setKhbh(username);
                     hionCustomer.setKhbh(username);
                     hionCustomer.setFirstcalltime(firstcalltime);
@@ -81,6 +90,12 @@ public class D2L {
                     hionContact.setContactaddr(aspnetMembers.getAddress());
                     hionContact.setQq(aspnetMembers.getQq());
                     hionContact.setEmail(aspnetMembers.getEmail());
+                    //默认同步到联系人表,这个是关联的
+                    hionContact.setDefaultlxr(true);
+                    //立档人必须填写
+                    hionCustomer.setWorkername("Admin");
+                    hionCustomer.setVip("N");
+
                     String zhuCeLaiYuan="未知注册来源!!";
                     ////1.微商城 2.触屏版 3.APP  4.服务窗
                     if(registeredsource==1){
@@ -113,8 +128,69 @@ public class D2L {
                     }
 
 
-                    hionContactMapper.updateByExample(hionContact,hionContactExample);
-                    hionCustomerMapper.updateByExample(hionCustomer,hionCustomerExample);
+                    //update那些字段,
+                    if(hionContact.getContact()!=null){
+                        if(!hionContact.getContact().equals("noWrite")){
+                            if(!hionContact.getContact().equals("")){
+                                if(!hionContact.getContact().equals("联系人姓名")){
+                                    hionContactMapper.updateContact(hionContact);
+                                }
+                            }
+                        }
+                    }
+
+                    if(hionContact.getMobile()!=null){
+                        if(!hionContact.getMobile().equals("noWrite")){
+                            if(!hionContact.getMobile().equals("")){
+                                if(!hionContact.getMobile().equals("手机")){
+                                    hionContactMapper.updateMobel(hionContact);
+                                }
+                            }
+                        }
+                    }
+                    if(hionContact.getContactaddr()!=null){
+                        if(!hionContact.getContactaddr().equals("noWrite")){
+                            if(!hionContact.getContactaddr().equals("")){
+                                if(!hionContact.getContactaddr().equals("地址")){
+                                    hionContactMapper.updateAddr(hionContact);
+                                }
+                            }
+                        }
+                    }
+                    if(hionContact.getQq()!=null){
+                        if(!hionContact.getQq().equals("noWrite")){
+                            if(!hionContact.getQq().equals("")){
+                                if(!hionContact.getQq().equals("QQ")){
+                                    hionContactMapper.updateQq(hionContact);
+                                }
+                            }
+                        }
+                    }
+                    if(hionContact.getEmail()!=null){
+                        if(!hionContact.getEmail().equals("noWrite")){
+                            if(!hionContact.getEmail().equals("")){
+                                if(!hionContact.getEmail().equals("Email")){
+                                    hionContactMapper.updateEmail(hionContact);
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    //下面是update hionCustomer表
+                    if(hionCustomer.getZdy2()!=null){//最近购买的前10件商品进行更新
+                        if(!hionCustomer.getZdy2().equals("自定义2")){
+                            if(!hionCustomer.getZdy2().equals("")){
+                                hionCustomerMapper.updateZdy2(hionCustomer);
+                            }
+                        }
+                    }
+
+
+
+
+
 
                 } catch (Exception e) {e.printStackTrace();}
             }

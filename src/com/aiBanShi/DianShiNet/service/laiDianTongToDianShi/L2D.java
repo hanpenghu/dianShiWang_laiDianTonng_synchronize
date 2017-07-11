@@ -17,7 +17,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017-07-05.
+ * Created by 韩寒 on 2017-07-05.
+ * 来电通同步到点识网
  */
 @Component
 public class L2D {
@@ -29,7 +30,7 @@ public class L2D {
     HionCustomerMapper hionCustomerMapper;
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
-    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
+//    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
     public void L2d(){
 
         try {
@@ -48,8 +49,6 @@ public class L2D {
                     AspnetMembersExample aspnetMembersExample=new AspnetMembersExample();
                     aspnetMembersExample.createCriteria().andUsernameEqualTo(khbh.trim());
                     long khbhNum = aspnetMembersMapper.countByExample(aspnetMembersExample);
-
-
 
 
 
@@ -82,10 +81,12 @@ public class L2D {
 
 //如果在点识网有这个数据,就更新并跳过该次,进行下次循环
                     if(khbhNum>0){
+                        //更新的时候我再mapperxml中删除了更新Registeredsource和其它不要更新的字段
                         aspnetMembersMapper.updateByExample(aspnetMembers,aspnetMembersExample);
                         continue;
                     }
                     aspnetMembersMapper.insert(aspnetMembers);
+
 
 
 

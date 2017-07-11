@@ -411,7 +411,7 @@
   </update>-->
 
 
-  <update id="updateByExample" parameterType="map">
+  <!--<update id="updateByExample" parameterType="map">
     update Hion_Contact
     set Contact = #{record.contact,jdbcType=VARCHAR},
     Duty = #{record.duty,jdbcType=VARCHAR},
@@ -436,7 +436,24 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>-->
+
+
+
+  <update id="updateByExample" parameterType="map">
+    update Hion_Contact
+    set Contact = #{record.contact,jdbcType=VARCHAR},
+    Mobile = #{record.mobile,jdbcType=VARCHAR},
+    ContactAddr = #{record.contactaddr,jdbcType=VARCHAR},
+    QQ = #{record.qq,jdbcType=VARCHAR},
+    Email = #{record.email,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
   </update>
+
+
+
 
 
   <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
@@ -533,4 +550,33 @@
       DefaultLXR1 = #{defaultlxr1,jdbcType=BIT}
     where Recid = #{recid,jdbcType=INTEGER}
   </update>
+
+  <update id="updateContact" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+
+    UPDATE Hion_Contact SET Contact = #{contact,jdbcType=VARCHAR}
+    WHERE KHBH=#{khbh,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateMobel" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+
+    UPDATE Hion_Contact SET Mobile = #{mobile,jdbcType=VARCHAR}
+    WHERE KHBH=#{khbh,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateAddr" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    UPDATE Hion_Contact SET ContactAddr = #{contactaddr,jdbcType=VARCHAR}
+    WHERE KHBH=#{khbh,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateQq" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    UPDATE Hion_Contact SET QQ = #{qq,jdbcType=VARCHAR}
+    WHERE KHBH=#{khbh,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateEmail" parameterType="com.aiBanShi.DianShiNet.dto.HionContact">
+    UPDATE Hion_Contact SET Email = #{email,jdbcType=VARCHAR}
+    WHERE KHBH=#{khbh,jdbcType=VARCHAR}
+  </update>
+
 </mapper>

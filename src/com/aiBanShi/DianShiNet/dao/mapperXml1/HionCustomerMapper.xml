@@ -534,30 +534,7 @@
 
   <update id="updateByExample" parameterType="map">
     update Hion_Customer
-    set CompanyName = #{record.companyname,jdbcType=VARCHAR},
-    CompanyAddr = #{record.companyaddr,jdbcType=VARCHAR},
-    Remarks = #{record.remarks,jdbcType=VARCHAR},
-    VIP = #{record.vip,jdbcType=VARCHAR},
-    ContactorType = #{record.contactortype,jdbcType=VARCHAR},
-    Intention = #{record.intention,jdbcType=VARCHAR},
-    Area = #{record.area,jdbcType=VARCHAR},
-    Workerid = #{record.workerid,jdbcType=VARCHAR},
-    WorkerName = #{record.workername,jdbcType=VARCHAR},
-    FirstCallTime = #{record.firstcalltime,jdbcType=VARCHAR},
-    ZDY1 = #{record.zdy1,jdbcType=VARCHAR},
-    ZDY2 = #{record.zdy2,jdbcType=VARCHAR},
-    ZDY3 = #{record.zdy3,jdbcType=VARCHAR},
-    LastContactTime = #{record.lastcontacttime,jdbcType=VARCHAR},
-    ZDY4 = #{record.zdy4,jdbcType=VARCHAR},
-    ZDY5 = #{record.zdy5,jdbcType=VARCHAR},
-    ZDY6 = #{record.zdy6,jdbcType=VARCHAR},
-    ZDY7 = #{record.zdy7,jdbcType=VARCHAR},
-    CallType = #{record.calltype,jdbcType=INTEGER},
-    ZDY8 = #{record.zdy8,jdbcType=VARCHAR},
-    ZDY9 = #{record.zdy9,jdbcType=VARCHAR},
-    ZDY10 = #{record.zdy10,jdbcType=VARCHAR},
-    ZDY11 = #{record.zdy11,jdbcType=VARCHAR},
-    LastCallResult = #{record.lastcallresult,jdbcType=VARCHAR}
+    set ZDY2 = #{record.zdy2,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -722,6 +699,9 @@
   SELECT KHBH FROM hion_Customer WHERE KHBH IS NOT NULL
 </select>
 
-
+  <update id="updateZdy2" parameterType="com.aiBanShi.DianShiNet.dto.HionCustomer">
+    UPDATE Hion_Customer SET ZDY2 = #{zdy2,jdbcType=VARCHAR}
+    WHERE KHBH=#{khbh,jdbcType=VARCHAR}
+  </update>
 
 </mapper>

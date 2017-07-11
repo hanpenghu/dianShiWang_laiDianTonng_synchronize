@@ -1,5 +1,6 @@
 package com.aiBanShi.DianShiNet.dao.mapperJava1;
 
+import com.aiBanShi.DianShiNet.dto.HionContact;
 import com.aiBanShi.DianShiNet.dto.HionCustomer;
 import com.aiBanShi.DianShiNet.dto.HionCustomerExample;
 import java.util.List;
@@ -38,4 +39,6 @@ public interface HionCustomerMapper {
 
 
     List<OneNvarchar> selectAllNotNullKhbh();
+
+    int updateZdy2(HionCustomer hionCustomer);
 }

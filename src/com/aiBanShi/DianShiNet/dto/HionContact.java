@@ -5,21 +5,21 @@ public class HionContact {
 
     private String khbh;
 
-    private String contact;
+    private String contact="联系人姓名";
 
     private String duty;
 
-    private String mobile;
+    private String mobile="手机";
 
-    private String officephone;
+    private String officephone="固定电话";
 
-    private String ext;
+    private String ext="分机";
 
-    private String homephone;
+    private String homephone="家庭电话";
 
-    private String otherphone;
+    private String otherphone="其它号码";
 
-    private String fax;
+    private String fax="传真";
 
     private String contactaddr;
 
@@ -31,15 +31,15 @@ public class HionContact {
 
     private String remarks;
 
-    private Boolean defaultlxr;
+    private Boolean defaultlxr=true;
 
-    private String zdy12;
+    private String zdy12="自定义12";
 
-    private String zdy13;
+    private String zdy13="自定义13";
 
-    private String zdy14;
+    private String zdy14="自定义14";
 
-    private String zdy15;
+    private String zdy15="自定义15";
 
     private String remarks1;
 

@@ -5,51 +5,51 @@ public class HionCustomer {
 
     private String khbh;
 
-    private String companyname;
+    private String companyname="单位名称";
 
-    private String companyaddr;
+    private String companyaddr="单位地址";
 
-    private String remarks;
+    private String remarks="谈话信息";
 
-    private String vip;
+    private String vip="N";
 
-    private String contactortype;
+    private String contactortype="本地客户";
 
-    private String intention;
+    private String intention="客户类型";
 
-    private String area;
+    private String area="地区";
 
-    private String workerid;
+    private String workerid="0001";
 
-    private String workername;
+    private String workername="Admin";
 
-    private String firstcalltime;
+    private String firstcalltime="2017-07-10 17:24:43";
 
-    private String zdy1;
+    private String zdy1="自定义1";
 
-    private String zdy2;
+    private String zdy2="自定义2";
 
-    private String zdy3;
+    private String zdy3="自定义3";
 
     private String lastcontacttime;
 
-    private String zdy4;
+    private String zdy4="自定义4";
 
-    private String zdy5;
+    private String zdy5="自定义5";
 
-    private String zdy6;
+    private String zdy6="自定义6";
 
-    private String zdy7;
+    private String zdy7="自定义7";
 
     private Integer calltype;
 
-    private String zdy8;
+    private String zdy8="自定义8";
 
-    private String zdy9;
+    private String zdy9="自定义9";
 
-    private String zdy10;
+    private String zdy10="自定义10";
 
-    private String zdy11;
+    private String zdy11="自定义11";
 
     private String lastcallresult;
 
