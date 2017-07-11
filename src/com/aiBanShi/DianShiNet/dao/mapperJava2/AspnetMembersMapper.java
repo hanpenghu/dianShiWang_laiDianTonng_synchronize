@@ -3,7 +3,7 @@ package com.aiBanShi.DianShiNet.dao.mapperJava2;
 import com.aiBanShi.DianShiNet.dto.AspnetMembers;
 import com.aiBanShi.DianShiNet.dto.AspnetMembersExample;
 import java.util.List;
-
+import com.aiBanShi.DianShiNet.dto.OneNvarchar;
 import com.aiBanShi.DianShiNet.dto.OrderInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,4 +33,16 @@ public interface AspnetMembersMapper {
     List<Integer> selectAllUserId();
 
     List<OrderInfo> selectInfoFromOrderTabByUserId(@Param("userId") Integer userId);
+
+    List<OneNvarchar> selectAllUserName();
+
+    int updateRealname(AspnetMembers aspnetMembers);
+
+    int updateCellphone(AspnetMembers aspnetMembers);
+
+    int updateAddr(AspnetMembers aspnetMembers);
+
+    int updateQq(AspnetMembers aspnetMembers);
+
+    int updateEmail(AspnetMembers aspnetMembers);
 }

@@ -897,5 +897,43 @@
     )
   </select>-->
 
+  <resultMap id="oneVarcharMap" type="com.aiBanShi.DianShiNet.dto.OneNvarchar">
+    <result column="UserName" jdbcType="VARCHAR" property="khbh"/>
+  </resultMap>
 
+  <select id="selectAllUserName" resultMap="oneVarcharMap">
+      SELECT UserName FROM aspnet_Members WHERE UserName IS NOT NULL
+  </select>
+
+<update id="updateRealname" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+  UPDATE aspnet_Members SET RealName = #{realname,jdbcType=VARCHAR}
+  WHERE UserName = #{username,jdbcType=VARCHAR}
+</update>
+
+
+  <update id="updateCellphone" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+    UPDATE aspnet_Members SET CellPhone = #{cellphone,jdbcType=VARCHAR}
+    WHERE UserName = #{username,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+  <update id="updateAddr" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+    UPDATE aspnet_Members SET Address = #{address,jdbcType=VARCHAR}
+    WHERE UserName = #{username,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateQq" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+    UPDATE aspnet_Members SET QQ = #{qq,jdbcType=VARCHAR}
+    WHERE UserName = #{username,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateEmail" parameterType="com.aiBanShi.DianShiNet.dto.AspnetMembers">
+    UPDATE aspnet_Members SET Email = #{email,jdbcType=VARCHAR}
+    WHERE UserName = #{username,jdbcType=VARCHAR}
+  </update>
 </mapper>

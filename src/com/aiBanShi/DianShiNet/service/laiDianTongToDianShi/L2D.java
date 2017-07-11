@@ -30,7 +30,7 @@ public class L2D {
     HionCustomerMapper hionCustomerMapper;
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
-//    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
+    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
     public void L2d(){
 
         try {
@@ -40,17 +40,13 @@ public class L2D {
             System.out.println("来电通同步到点识网该次开始时间"+date1);
             //拿到所有的KHBH
             List<OneNvarchar> oneNvarchars = hionCustomerMapper.selectAllNotNullKhbh();
+
+            List<OneNvarchar> oneNvarchars1 = aspnetMembersMapper.selectAllUserName();
             //循环所有KHBH
             for (OneNvarchar on:oneNvarchars){
                 try {
                     //得到当前客户编号
                     String khbh=on.getKhbh();
-                    //先判断点识网的数据库有没有这个客户编号khbh
-                    AspnetMembersExample aspnetMembersExample=new AspnetMembersExample();
-                    aspnetMembersExample.createCriteria().andUsernameEqualTo(khbh.trim());
-                    long khbhNum = aspnetMembersMapper.countByExample(aspnetMembersExample);
-
-
 
                     HionCustomerExample hionCustomerExample=new HionCustomerExample();
                     hionCustomerExample.createCriteria().andKhbhEqualTo(khbh);
@@ -65,6 +61,22 @@ public class L2D {
 
                     AspnetMembers aspnetMembers=new AspnetMembers();
                     aspnetMembers.setUsername(hionCustomer.getKhbh().trim());
+                    //先判断点识网的数据库有没有这个客户编号khbh
+                    long khbhNum=0;
+                    for(OneNvarchar var:oneNvarchars1){//循环海商里面的所有会员名字
+                        String username = var.getKhbh();
+                        username=username.replace("@","").replace(".","");
+                        if(khbh!=null){
+                            if(khbh.equals(username)){
+                                khbhNum++;
+                                //由于海商和点识网2边的username和khbh不完全相同,所以要从新付值一遍
+                                aspnetMembers.setUsername(username);
+                                break;//找到一样的就打断循环不再比较
+                            }
+                        }
+
+
+                    }
 
                     String firstcalltime = hionCustomer.getFirstcalltime();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -80,16 +92,62 @@ public class L2D {
                     aspnetMembers.setRegisteredsource(9999);
 
 //如果在点识网有这个数据,就更新并跳过该次,进行下次循环
-                    if(khbhNum>0){
-                        //更新的时候我再mapperxml中删除了更新Registeredsource和其它不要更新的字段
-                        aspnetMembersMapper.updateByExample(aspnetMembers,aspnetMembersExample);
-                        continue;
+                    if(khbhNum==0){
+                        //没有就插入
+                        aspnetMembersMapper.insert(aspnetMembers);
+                        continue;//结束该次循环
                     }
-                    aspnetMembersMapper.insert(aspnetMembers);
 
+                    //有了就更新
+                    //更新真实姓名
+                    if(aspnetMembers.getRealname()!=null){
+                        if(!"".equals(aspnetMembers.getRealname())){
+                           if(!"联系人姓名".equals(aspnetMembers.getRealname())){
+                               if(!"noWrite".equals(aspnetMembers.getRealname())){
+                                   aspnetMembersMapper.updateRealname(aspnetMembers);
+                               }
+                           }
+                        }
+                    }
 
+                    if(aspnetMembers.getCellphone()!=null){
+                        if(!"".equals(aspnetMembers.getCellphone())){
+                            if(!"手机".equals(aspnetMembers.getCellphone())){
+                                if(!"noWrite".equals(aspnetMembers.getCellphone())){
+                                    aspnetMembersMapper.updateCellphone(aspnetMembers);
+                                }
+                            }
+                        }
+                    }
+                    if(aspnetMembers.getAddress()!=null){
+                        if(!"".equals(aspnetMembers.getAddress())){
+                            if(!"地址".equals(aspnetMembers.getAddress())){
+                                if(!"noWrite".equals(aspnetMembers.getAddress())){
+                                    aspnetMembersMapper.updateAddr(aspnetMembers);
+                                }
+                            }
+                        }
+                    }
 
+                    if(aspnetMembers.getQq()!=null){
+                        if(!"".equals(aspnetMembers.getQq())){
+                            if(!"QQ".equals(aspnetMembers.getQq())){
+                                if(!"noWrite".equals(aspnetMembers.getQq())){
+                                    aspnetMembersMapper.updateQq(aspnetMembers);
+                                }
+                            }
+                        }
+                    }
 
+                    if(aspnetMembers.getEmail()!=null){
+                        if(!"".equals(aspnetMembers.getEmail())){
+                            if(!"Email".equals(aspnetMembers.getEmail())){
+                                if(!"noWrite".equals(aspnetMembers.getEmail())){
+                                    aspnetMembersMapper.updateEmail(aspnetMembers);
+                                }
+                            }
+                        }
+                    }
 
 
                 } catch (Exception e) {e.printStackTrace();}

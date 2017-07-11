@@ -32,7 +32,7 @@ public class D2L {
     HionCustomerMapper hionCustomerMapper;
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
-    @Scheduled(cron = "#{configProperties['syncTimeOfD2L']}")
+//    @Scheduled(cron = "#{configProperties['syncTimeOfD2L']}")
     public void d2L(){
 
         try {
