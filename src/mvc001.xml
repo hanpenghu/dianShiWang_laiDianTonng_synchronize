@@ -30,6 +30,7 @@
   		这样,就通过mvc:resources这个标签把专门的静态资源跟动态资源区分开了 -->	
 	    <!--<mvc:resources location="/js_EasyUIAndJqueryAndJavaScript/" mapping="/js_EasyUIAndJqueryAndJavaScript/**">
 	    </mvc:resources>-->
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
 	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
 	<!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"/>

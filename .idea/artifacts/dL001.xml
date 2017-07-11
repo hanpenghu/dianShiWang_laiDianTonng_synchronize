@@ -1,7 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="dianShiWang_laiDianTonng_synchronize:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/dianShiWang_laiDianTonng_synchronize_war_exploded</output-path>
-    <root id="archive" name="dianShiWang_laiDianTonng_synchronize_war exploded.war">
+  <artifact type="war" name="dL001">
+    <output-path>$PROJECT_DIR$/out/artifacts/dL001</output-path>
+    <root id="archive" name="dL001.war">
+      <element id="javaee-facet-resources" facet="dianShiWang_laiDianTonng_synchronize/web/dianShiWang_laiDianTong_synchronize" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="dianShiWang_laiDianTonng_synchronize" />

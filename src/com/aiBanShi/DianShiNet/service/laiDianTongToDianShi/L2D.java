@@ -65,7 +65,12 @@ public class L2D {
                     long khbhNum=0;
                     for(OneNvarchar var:oneNvarchars1){//循环海商里面的所有会员名字
                         String username = var.getKhbh();
-                        username=username.replace("@","").replace(".","");
+                        if(username.contains("@")){
+                            username=username.replace("@","");
+                        }
+                        if(username.contains(".")){
+                            username=username.replace(".","");
+                        }
                         if(khbh!=null){
                             if(khbh.equals(username)){
                                 khbhNum++;
