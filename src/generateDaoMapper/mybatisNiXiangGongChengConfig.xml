@@ -81,7 +81,8 @@
         	enableSelectByExample="false"
         ></table> -->
         <!--dept cust salm my_wh-->
-        <table tableName="Hion_AgentInfo"></table>
+        <table tableName="Hion_Duty2015"></table>
+        <!--<table tableName="Hion_AgentInfo"></table>-->
       	 <!--<table tableName="aspnet_Members"></table>-->
         <!--<table tableName="Hion_Contact"></table>-->
         <!--<table tableName="Hion_Customer"></table>-->

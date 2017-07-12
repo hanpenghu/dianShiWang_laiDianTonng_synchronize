@@ -30,7 +30,7 @@ public class L2D {
     HionCustomerMapper hionCustomerMapper;
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
-    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
+//    @Scheduled(cron = "#{configProperties['syncTimeOfL2D']}")
     public void L2d(){
 
         try {

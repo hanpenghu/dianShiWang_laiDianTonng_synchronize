@@ -19,7 +19,7 @@ public class HionCustomer {
 
     private String area="地区";
 
-    private String workerid="9999";
+    private String workerid="0004";
 
     private String workername="公共下属";
 
