@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiBanShi.DianShiNet.dao.mapperJava1.HionAgentinfoMapper">
+  <resultMap id="BaseResultMap" type="com.aiBanShi.DianShiNet.dto.HionAgentinfo">
+    <id column="Recid" jdbcType="INTEGER" property="recid" />
+    <result column="StaffID" jdbcType="VARCHAR" property="staffid" />
+    <result column="StaffName" jdbcType="VARCHAR" property="staffname" />
+    <result column="StaffPwd" jdbcType="VARCHAR" property="staffpwd" />
+    <result column="DepartMent" jdbcType="VARCHAR" property="department" />
+    <result column="Duty" jdbcType="VARCHAR" property="duty" />
+    <result column="Grade" jdbcType="VARCHAR" property="grade" />
+    <result column="ifLogin" jdbcType="INTEGER" property="iflogin" />
+    <result column="LoginStation" jdbcType="VARCHAR" property="loginstation" />
+    <result column="Remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="Ext" jdbcType="VARCHAR" property="ext" />
+    <result column="Mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="OfficePhone" jdbcType="VARCHAR" property="officephone" />
+    <result column="LogMode" jdbcType="VARCHAR" property="logmode" />
+    <result column="ZWPJ" jdbcType="VARCHAR" property="zwpj" />
+    <result column="GZJY" jdbcType="VARCHAR" property="gzjy" />
+    <result column="JYJL" jdbcType="VARCHAR" property="jyjl" />
+    <result column="ISChecked" jdbcType="BIT" property="ischecked" />
+    <result column="YGZT" jdbcType="VARCHAR" property="ygzt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Recid, StaffID, StaffName, StaffPwd, DepartMent, Duty, Grade, ifLogin, LoginStation, 
+    Remarks, Ext, Mobile, OfficePhone, LogMode, ZWPJ, GZJY, JYJL, ISChecked, YGZT
+  </sql>
+  <select id="selectByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Hion_AgentInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Hion_AgentInfo
+    where Recid = #{recid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Hion_AgentInfo
+    where Recid = #{recid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfoExample">
+    delete from Hion_AgentInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfo">
+    insert into Hion_AgentInfo (StaffID, StaffName,
+      StaffPwd, DepartMent, Duty, 
+      Grade, ifLogin, LoginStation, 
+      Remarks, Ext, Mobile, 
+      OfficePhone, LogMode, ZWPJ, 
+      GZJY, JYJL, ISChecked, 
+      YGZT)
+    values (#{staffid,jdbcType=VARCHAR}, #{staffname,jdbcType=VARCHAR},
+      #{staffpwd,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{duty,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{iflogin,jdbcType=INTEGER}, #{loginstation,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{officephone,jdbcType=VARCHAR}, #{logmode,jdbcType=VARCHAR}, #{zwpj,jdbcType=VARCHAR}, 
+      #{gzjy,jdbcType=VARCHAR}, #{jyjl,jdbcType=VARCHAR}, #{ischecked,jdbcType=BIT}, 
+      #{ygzt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfo">
+    insert into Hion_AgentInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        Recid,
+      </if>
+      <if test="staffid != null">
+        StaffID,
+      </if>
+      <if test="staffname != null">
+        StaffName,
+      </if>
+      <if test="staffpwd != null">
+        StaffPwd,
+      </if>
+      <if test="department != null">
+        DepartMent,
+      </if>
+      <if test="duty != null">
+        Duty,
+      </if>
+      <if test="grade != null">
+        Grade,
+      </if>
+      <if test="iflogin != null">
+        ifLogin,
+      </if>
+      <if test="loginstation != null">
+        LoginStation,
+      </if>
+      <if test="remarks != null">
+        Remarks,
+      </if>
+      <if test="ext != null">
+        Ext,
+      </if>
+      <if test="mobile != null">
+        Mobile,
+      </if>
+      <if test="officephone != null">
+        OfficePhone,
+      </if>
+      <if test="logmode != null">
+        LogMode,
+      </if>
+      <if test="zwpj != null">
+        ZWPJ,
+      </if>
+      <if test="gzjy != null">
+        GZJY,
+      </if>
+      <if test="jyjl != null">
+        JYJL,
+      </if>
+      <if test="ischecked != null">
+        ISChecked,
+      </if>
+      <if test="ygzt != null">
+        YGZT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recid != null">
+        #{recid,jdbcType=INTEGER},
+      </if>
+      <if test="staffid != null">
+        #{staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null">
+        #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="staffpwd != null">
+        #{staffpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null">
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="iflogin != null">
+        #{iflogin,jdbcType=INTEGER},
+      </if>
+      <if test="loginstation != null">
+        #{loginstation,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="logmode != null">
+        #{logmode,jdbcType=VARCHAR},
+      </if>
+      <if test="zwpj != null">
+        #{zwpj,jdbcType=VARCHAR},
+      </if>
+      <if test="gzjy != null">
+        #{gzjy,jdbcType=VARCHAR},
+      </if>
+      <if test="jyjl != null">
+        #{jyjl,jdbcType=VARCHAR},
+      </if>
+      <if test="ischecked != null">
+        #{ischecked,jdbcType=BIT},
+      </if>
+      <if test="ygzt != null">
+        #{ygzt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfoExample" resultType="java.lang.Long">
+    select count(*) from Hion_AgentInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Hion_AgentInfo
+    <set>
+      <if test="record.recid != null">
+        Recid = #{record.recid,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffid != null">
+        StaffID = #{record.staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffname != null">
+        StaffName = #{record.staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffpwd != null">
+        StaffPwd = #{record.staffpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null">
+        DepartMent = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duty != null">
+        Duty = #{record.duty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null">
+        Grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iflogin != null">
+        ifLogin = #{record.iflogin,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginstation != null">
+        LoginStation = #{record.loginstation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null">
+        Ext = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officephone != null">
+        OfficePhone = #{record.officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logmode != null">
+        LogMode = #{record.logmode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zwpj != null">
+        ZWPJ = #{record.zwpj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gzjy != null">
+        GZJY = #{record.gzjy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jyjl != null">
+        JYJL = #{record.jyjl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ischecked != null">
+        ISChecked = #{record.ischecked,jdbcType=BIT},
+      </if>
+      <if test="record.ygzt != null">
+        YGZT = #{record.ygzt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Hion_AgentInfo
+    set  StaffID = #{record.staffid,jdbcType=VARCHAR},
+      StaffName = #{record.staffname,jdbcType=VARCHAR},
+      StaffPwd = #{record.staffpwd,jdbcType=VARCHAR},
+      DepartMent = #{record.department,jdbcType=VARCHAR},
+      Duty = #{record.duty,jdbcType=VARCHAR},
+      Grade = #{record.grade,jdbcType=VARCHAR},
+      ifLogin = #{record.iflogin,jdbcType=INTEGER},
+      LoginStation = #{record.loginstation,jdbcType=VARCHAR},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      Ext = #{record.ext,jdbcType=VARCHAR},
+      Mobile = #{record.mobile,jdbcType=VARCHAR},
+      OfficePhone = #{record.officephone,jdbcType=VARCHAR},
+      LogMode = #{record.logmode,jdbcType=VARCHAR},
+      ZWPJ = #{record.zwpj,jdbcType=VARCHAR},
+      GZJY = #{record.gzjy,jdbcType=VARCHAR},
+      JYJL = #{record.jyjl,jdbcType=VARCHAR},
+      ISChecked = #{record.ischecked,jdbcType=BIT},
+      YGZT = #{record.ygzt,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfo">
+    update Hion_AgentInfo
+    <set>
+      <if test="staffid != null">
+        StaffID = #{staffid,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null">
+        StaffName = #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="staffpwd != null">
+        StaffPwd = #{staffpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        DepartMent = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null">
+        Duty = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        Grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="iflogin != null">
+        ifLogin = #{iflogin,jdbcType=INTEGER},
+      </if>
+      <if test="loginstation != null">
+        LoginStation = #{loginstation,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        Ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        OfficePhone = #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="logmode != null">
+        LogMode = #{logmode,jdbcType=VARCHAR},
+      </if>
+      <if test="zwpj != null">
+        ZWPJ = #{zwpj,jdbcType=VARCHAR},
+      </if>
+      <if test="gzjy != null">
+        GZJY = #{gzjy,jdbcType=VARCHAR},
+      </if>
+      <if test="jyjl != null">
+        JYJL = #{jyjl,jdbcType=VARCHAR},
+      </if>
+      <if test="ischecked != null">
+        ISChecked = #{ischecked,jdbcType=BIT},
+      </if>
+      <if test="ygzt != null">
+        YGZT = #{ygzt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aiBanShi.DianShiNet.dto.HionAgentinfo">
+    update Hion_AgentInfo
+    set StaffID = #{staffid,jdbcType=VARCHAR},
+      StaffName = #{staffname,jdbcType=VARCHAR},
+      StaffPwd = #{staffpwd,jdbcType=VARCHAR},
+      DepartMent = #{department,jdbcType=VARCHAR},
+      Duty = #{duty,jdbcType=VARCHAR},
+      Grade = #{grade,jdbcType=VARCHAR},
+      ifLogin = #{iflogin,jdbcType=INTEGER},
+      LoginStation = #{loginstation,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      Ext = #{ext,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      OfficePhone = #{officephone,jdbcType=VARCHAR},
+      LogMode = #{logmode,jdbcType=VARCHAR},
+      ZWPJ = #{zwpj,jdbcType=VARCHAR},
+      GZJY = #{gzjy,jdbcType=VARCHAR},
+      JYJL = #{jyjl,jdbcType=VARCHAR},
+      ISChecked = #{ischecked,jdbcType=BIT},
+      YGZT = #{ygzt,jdbcType=VARCHAR}
+    where Recid = #{recid,jdbcType=INTEGER}
+  </update>
+</mapper>
