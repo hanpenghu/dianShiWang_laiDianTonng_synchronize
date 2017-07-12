@@ -4,6 +4,7 @@ import com.aiBanShi.DianShiNet.dao.mapperJava1.HionContactMapper;
 import com.aiBanShi.DianShiNet.dao.mapperJava1.HionCustomerMapper;
 import com.aiBanShi.DianShiNet.dao.mapperJava2.AspnetMembersMapper;
 import com.aiBanShi.DianShiNet.dto.*;
+import com.aiBanShi.DianShiNet.service.ChuanJianGongYongXiaShu;
 import com.aiBanShi.DianShiNet.utils.NotEmpty;
 import com.aiBanShi.DianShiNet.utils.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import java.util.List;
 @Component
 public class D2L {
     @Autowired
+    ChuanJianGongYongXiaShu chuanJianGongYongXiaShu;
+    @Autowired
     AspnetMembersMapper aspnetMembersMapper;
     @Autowired
     HionContactMapper hionContactMapper;
@@ -40,6 +43,11 @@ public class D2L {
             System.out.println();
             Date date1 = new Date();
             System.out.println("点识网同步到来电通该次开始时间"+date1);
+            //准备插入公共管理员
+            chuanJianGongYongXiaShu.f();
+
+
+
             //拿到所有的主键,进行循环
             List<Integer> allUserId = aspnetMembersMapper.selectAllUserId();
             //如果allUserId是空的,就不再执行下面的

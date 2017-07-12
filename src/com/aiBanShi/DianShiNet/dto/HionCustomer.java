@@ -19,9 +19,9 @@ public class HionCustomer {
 
     private String area="地区";
 
-    private String workerid="0001";
+    private String workerid="9999";
 
-    private String workername="Admin";
+    private String workername="公共下属";
 
     private String firstcalltime="2017-07-10 17:24:43";
 
