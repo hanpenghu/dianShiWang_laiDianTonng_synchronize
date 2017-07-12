@@ -22,7 +22,7 @@ end
   update Hion_Duty2015 set 	QXValue='NO' where StaffName='初始值' and   QX2='下属成员'
 
 
-  
+
   Create Trigger xianZhiGuanLiYuanTianJiaXiaShu	----当更新非0001的时候让该用户无法添加下属
 On Hion_Duty2015
 after update
