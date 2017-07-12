@@ -1,5 +1,7 @@
 package com.aiBanShi.DianShiNet.utils;
 
+import java.io.File;
+
 /**
  * Created by Administrator on 2017-07-05.
  */

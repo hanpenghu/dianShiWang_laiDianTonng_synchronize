@@ -8,14 +8,14 @@
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
-        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
                         connectionURL="jdbc:sqlserver://127.0.0.1:6900;DatabaseName=Uc3" userId="sa"
                         password="power">
-        </jdbcConnection>-->
-        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        </jdbcConnection>
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
                         connectionURL="jdbc:sqlserver://120.26.73.200:7201;DatabaseName=ysc25" userId="sa"
                         password="x3g5k8h!9+guanglan@">
-        </jdbcConnection>
+        </jdbcConnection>-->
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 ,荷合每美-->
         <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
@@ -61,7 +61,7 @@
         
         
         <!-- targetProject:mapper映射文件生成的位置，重要！！ -->
-        <sqlMapGenerator targetPackage="com.aiBanShi.DianShiNet.dao.mapperXml2"
+        <sqlMapGenerator targetPackage="com.aiBanShi.DianShiNet.dao.mapperXml1"
             targetProject=".\src">
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
@@ -69,7 +69,7 @@
         
         <!-- targetPackage：mapper接口生成的位置，重要！！ -->
         <javaClientGenerator type="XMLMAPPER"
-            targetPackage="com.aiBanShi.DianShiNet.dao.mapperJava2"
+            targetPackage="com.aiBanShi.DianShiNet.dao.mapperJava1"
             targetProject=".\src">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
@@ -81,8 +81,8 @@
         	enableSelectByExample="false"
         ></table> -->
         <!--dept cust salm my_wh-->
-        
-      	 <table tableName="aspnet_Members"></table>
+        <table tableName="Hion_AgentInfo"></table>
+      	 <!--<table tableName="aspnet_Members"></table>-->
         <!--<table tableName="Hion_Contact"></table>-->
         <!--<table tableName="Hion_Customer"></table>-->
         <!--<table tableName="salm"></table>
