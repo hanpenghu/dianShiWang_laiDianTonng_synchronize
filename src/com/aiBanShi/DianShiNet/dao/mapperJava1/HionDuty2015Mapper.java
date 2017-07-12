@@ -1,5 +1,6 @@
 package com.aiBanShi.DianShiNet.dao.mapperJava1;
 
+import com.aiBanShi.DianShiNet.dto.FiveStrAndFiveInt;
 import com.aiBanShi.DianShiNet.dto.HionDuty2015;
 import com.aiBanShi.DianShiNet.dto.HionDuty2015Example;
 import java.util.List;
@@ -27,4 +28,6 @@ public interface HionDuty2015Mapper {
     int updateByPrimaryKeySelective(HionDuty2015 record);
 
     int updateByPrimaryKey(HionDuty2015 record);
+
+    int updateOrdercol(FiveStrAndFiveInt fsfi);
 }

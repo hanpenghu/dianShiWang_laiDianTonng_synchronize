@@ -35,7 +35,7 @@ public class D2L {
     HionCustomerMapper hionCustomerMapper;
 
 //1.微商城 2.触屏版 3.APP  4.支付宝服务窗//客户来源
-//    @Scheduled(cron = "#{configProperties['syncTimeOfD2L']}")
+    @Scheduled(cron = "#{configProperties['syncTimeOfD2L']}")
     public void d2L(){
 
         try {
@@ -101,7 +101,7 @@ public class D2L {
                     //默认同步到联系人表,这个是关联的
                     hionContact.setDefaultlxr(true);
                     //立档人必须填写
-                    hionCustomer.setWorkername("Admin");
+                    hionCustomer.setWorkername("Public");
                     hionCustomer.setVip("N");
 
                     String zhuCeLaiYuan="未知注册来源!!";

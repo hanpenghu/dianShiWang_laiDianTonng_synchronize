@@ -225,4 +225,12 @@
       OrderCol = #{ordercol,jdbcType=INTEGER}
     where Recid = #{recid,jdbcType=INTEGER}
   </update>
+
+
+  <update id="updateOrdercol" parameterType="com.aiBanShi.DianShiNet.dto.FiveStrAndFiveInt">
+    update Hion_Duty2015
+    set
+    OrderCol = #{k2,jdbcType=INTEGER}
+    where OrderCol = #{k1,jdbcType=INTEGER}
+  </update>
 </mapper>
