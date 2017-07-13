@@ -1,9 +1,24 @@
 package com.aiBanShi.DianShiNet.dto;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.Properties;
+
 public class HionDuty2015 {
     private Integer recid;
 
     private String staffname;
+    public HionDuty2015() {
+        try {
+            String path = this.getClass().getResource("/").getPath();
+            Properties p=new Properties();
+            FileReader fileReader = new FileReader(new File(path + "dataSource.properties"));
+            p.load(fileReader);
+            this.staffname=p.getProperty("gongGongZhangHaoNameOfLaiDianTong");
+            fileReader.close();
+        } catch (Exception e) {e.printStackTrace();}
+
+    }
 
     private String qx1;
 

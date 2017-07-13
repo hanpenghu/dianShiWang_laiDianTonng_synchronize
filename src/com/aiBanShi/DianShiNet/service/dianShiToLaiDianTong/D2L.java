@@ -101,7 +101,7 @@ public class D2L {
                     //默认同步到联系人表,这个是关联的
                     hionContact.setDefaultlxr(true);
                     //立档人必须填写
-                    hionCustomer.setWorkername("Public");
+//                    hionCustomer.setWorkername("Public");//已经在类中在加载的时候搞定
                     hionCustomer.setVip("N");
 
                     String zhuCeLaiYuan="未知注册来源!!";

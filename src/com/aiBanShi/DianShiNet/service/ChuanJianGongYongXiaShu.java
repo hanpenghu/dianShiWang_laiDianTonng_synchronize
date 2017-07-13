@@ -8,7 +8,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by hanhan on 2017-07-12.
@@ -28,9 +31,10 @@ public class ChuanJianGongYongXiaShu {
                 return;
             }
             HionAgentinfo ha=new HionAgentinfo();
-            ha.setStaffid("9999");//这个和下面的pwd用于Uc3登录
-            ha.setStaffname("Public");
-            ha.setStaffpwd("123");
+            //下面3行不再用了是因为在new的时候自动赋值了
+//            ha.setStaffid("9999");//这个和下面的pwd用于Uc3登录
+//            ha.setStaffname("Public");
+//            ha.setStaffpwd("123");
             ha.setDepartment("客服");
             ha.setDuty("接话员");
             ha.setGrade("普通用户");
@@ -51,9 +55,14 @@ public class ChuanJianGongYongXiaShu {
 
     public boolean ifExsit(){
         try {
+            String path = this.getClass().getResource("/").getPath();
+            Properties p=new Properties();
+            FileReader fileReader = new FileReader(new File(path + "dataSource.properties"));
+            p.load(fileReader);
             HionAgentinfoExample hae=new HionAgentinfoExample();
-            hae.createCriteria().andStaffidEqualTo("9999");
+            hae.createCriteria().andStaffidEqualTo(p.getProperty("gongGongZhangHaoDengLuOfLaiDianTong"));
             long l = hionAgentinfoMapper.countByExample(hae);
+            fileReader.close();
             if(l>0){
                 return true;
             }else {return false;}
@@ -64,7 +73,7 @@ public class ChuanJianGongYongXiaShu {
     public void insertQuanXian(){
         try {
             HionDuty2015 hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("显示范围");
             hionDuty2015.setQxvalue("自己及下属");
@@ -80,7 +89,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--增加");
             hionDuty2015.setQxvalue("Y");
@@ -96,7 +105,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--修改");
             hionDuty2015.setQxvalue("Y");
@@ -112,7 +121,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--删除");
             hionDuty2015.setQxvalue("Y");
@@ -128,7 +137,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--导入");
             hionDuty2015.setQxvalue("Y");
@@ -144,7 +153,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--导出");
             hionDuty2015.setQxvalue("Y");
@@ -160,7 +169,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--转移归属");
             hionDuty2015.setQxvalue("Y");
@@ -176,7 +185,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--转移类别");
             hionDuty2015.setQxvalue("Y");
@@ -192,7 +201,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--添加类别");
             hionDuty2015.setQxvalue("Y");
@@ -208,7 +217,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--修改类别");
             hionDuty2015.setQxvalue("Y");
@@ -224,7 +233,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--删除类别");
             hionDuty2015.setQxvalue("Y");
@@ -240,7 +249,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--自定义标题");
             hionDuty2015.setQxvalue("Y");
@@ -256,7 +265,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--自定义列");
             hionDuty2015.setQxvalue("Y");
@@ -272,7 +281,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("客户资料");
             hionDuty2015.setQx2("--保存列宽");
             hionDuty2015.setQxvalue("Y");
@@ -288,7 +297,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("通话记录");
             hionDuty2015.setQx2("显示范围");
             hionDuty2015.setQxvalue("自己及下属");
@@ -304,7 +313,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("通话记录");
             hionDuty2015.setQx2("--播放");
             hionDuty2015.setQxvalue("Y");
@@ -320,7 +329,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("通话记录");
             hionDuty2015.setQx2("--删除");
             hionDuty2015.setQxvalue("Y");
@@ -336,7 +345,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("通话记录");
             hionDuty2015.setQx2("--另存");
             hionDuty2015.setQxvalue("Y");
@@ -352,7 +361,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("通话记录");
             hionDuty2015.setQx2("--导出");
             hionDuty2015.setQxvalue("Y");
@@ -368,7 +377,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("通话记录");
             hionDuty2015.setQx2("--自定义列");
             hionDuty2015.setQxvalue("Y");
@@ -384,7 +393,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("显示范围");
             hionDuty2015.setQxvalue("自己及下属");
@@ -400,7 +409,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--增加");
             hionDuty2015.setQxvalue("Y");
@@ -416,7 +425,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--修改");
             hionDuty2015.setQxvalue("Y");
@@ -432,7 +441,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--删除");
             hionDuty2015.setQxvalue("Y");
@@ -448,7 +457,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--导入");
             hionDuty2015.setQxvalue("Y");
@@ -464,7 +473,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--导出");
             hionDuty2015.setQxvalue("Y");
@@ -480,7 +489,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--添加部门");
             hionDuty2015.setQxvalue("Y");
@@ -496,7 +505,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--修改部门");
             hionDuty2015.setQxvalue("Y");
@@ -512,7 +521,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("--删除部门");
             hionDuty2015.setQxvalue("Y");
@@ -528,7 +537,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("个人简历");
             hionDuty2015.setQxvalue("Y");
@@ -544,7 +553,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("下属成员");
             hionDuty2015.setQxvalue("Y");
@@ -560,7 +569,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("员工管理");
             hionDuty2015.setQx2("权限设置");
             hionDuty2015.setQxvalue("NO");
@@ -576,7 +585,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("短信记录");
             hionDuty2015.setQx2("显示范围");
             hionDuty2015.setQxvalue("自己及下属");
@@ -592,7 +601,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("短信记录");
             hionDuty2015.setQx2("--增加");
             hionDuty2015.setQxvalue("Y");
@@ -608,7 +617,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("短信记录");
             hionDuty2015.setQx2("--修改");
             hionDuty2015.setQxvalue("Y");
@@ -624,7 +633,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("短信记录");
             hionDuty2015.setQx2("--删除");
             hionDuty2015.setQxvalue("Y");
@@ -640,7 +649,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("短信记录");
             hionDuty2015.setQx2("--发送");
             hionDuty2015.setQxvalue("Y");
@@ -656,7 +665,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("统计报表");
             hionDuty2015.setQx2("是否显示");
             hionDuty2015.setQxvalue("Y");
@@ -672,7 +681,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("统计报表");
             hionDuty2015.setQx2("--导出");
             hionDuty2015.setQxvalue("Y");
@@ -688,7 +697,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("是否显示");
             hionDuty2015.setQxvalue("Y");
@@ -704,7 +713,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("--保存设置");
             hionDuty2015.setQxvalue("Y");
@@ -720,7 +729,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("电话设置");
             hionDuty2015.setQxvalue("Y");
@@ -736,7 +745,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("录音留言设置");
             hionDuty2015.setQxvalue("Y");
@@ -752,7 +761,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("铃音设置");
             hionDuty2015.setQxvalue("Y");
@@ -768,7 +777,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("短信网关");
             hionDuty2015.setQxvalue("Y");
@@ -784,7 +793,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("系统设置");
             hionDuty2015.setQx2("个人设置");
             hionDuty2015.setQxvalue("Y");
@@ -800,7 +809,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("其他功能");
             hionDuty2015.setQx2("闭音");
             hionDuty2015.setQxvalue("Y");
@@ -816,7 +825,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("其他功能");
             hionDuty2015.setQx2("保留");
             hionDuty2015.setQxvalue("Y");
@@ -832,7 +841,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("其他功能");
             hionDuty2015.setQx2("转拨");
             hionDuty2015.setQxvalue("Y");
@@ -848,7 +857,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("其他功能");
             hionDuty2015.setQx2("能否退出软件");
             hionDuty2015.setQxvalue("Y");
@@ -864,7 +873,7 @@ public class ChuanJianGongYongXiaShu {
             hionDuty2015Mapper.updateOrdercol(fsfi);
 
             hionDuty2015=new HionDuty2015();
-            hionDuty2015.setStaffname("Public");
+            
             hionDuty2015.setQx1("其他功能");
             hionDuty2015.setQx2("显示电话号码");
             hionDuty2015.setQxvalue("Y");

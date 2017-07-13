@@ -1,5 +1,9 @@
 package com.aiBanShi.DianShiNet.dto;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.Properties;
+
 public class HionCustomer {
     private Integer recid;
 
@@ -22,6 +26,18 @@ public class HionCustomer {
     private String workerid="9999";
 
     private String workername="Public";
+
+    public HionCustomer(){
+        try {
+            String path = this.getClass().getResource("/").getPath();
+            Properties p=new Properties();
+            FileReader fileReader = new FileReader(new File(path + "dataSource.properties"));
+            p.load(fileReader);
+            this.workername=p.getProperty("gongGongZhangHaoNameOfLaiDianTong");
+            this.workerid=p.getProperty("gongGongZhangHaoDengLuOfLaiDianTong");
+            fileReader.close();
+        } catch (Exception e) {e.printStackTrace();}
+    }
 
     private String firstcalltime="2017-07-10 17:24:43";
 

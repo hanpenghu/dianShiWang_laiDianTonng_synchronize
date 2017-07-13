@@ -58,30 +58,49 @@ public class L2D {
                     hionContactExample.createCriteria().andKhbhEqualTo(khbh);
                     List<HionContact> hionContacts = hionContactMapper.selectByExample(hionContactExample);
                     HionContact hionContact = hionContacts.get(0);
+                    String mobilenum = hionContact.getMobile();
 
                     AspnetMembers aspnetMembers=new AspnetMembers();
-                    aspnetMembers.setUsername(hionCustomer.getKhbh().trim());
                     //先判断点识网的数据库有没有这个客户编号khbh
                     long khbhNum=0;
-                    for(OneNvarchar var:oneNvarchars1){//循环海商里面的所有会员名字
-                        String username = var.getKhbh();
-                        if(username.contains("@")){
-                            username=username.replace("@","");
-                        }
-                        if(username.contains(".")){
-                            username=username.replace(".","");
-                        }
-                        if(khbh!=null){
-                            if(khbh.equals(username)){
-                                khbhNum++;
-                                //由于海商和点识网2边的username和khbh不完全相同,所以要从新付值一遍
-                                aspnetMembers.setUsername(username);
-                                break;//找到一样的就打断循环不再比较
+                    if(mobilenum==null||"".equals(mobilenum)){//此时用khbh用作为点识网的客户
+                        aspnetMembers.setUsername(hionCustomer.getKhbh().trim());
+                        for(OneNvarchar var:oneNvarchars1){//循环海商里面的所有会员名字
+                            String username = var.getKhbh();
+                            if(username.contains("@")){
+                                username=username.replace("@","");
+                            }
+                            if(username.contains(".")){
+                                username=username.replace(".","");
+                            }
+                            if(khbh!=null){
+                                if(khbh.equals(username)){
+                                    khbhNum++;
+                                    //由于海商和点识网2边的username和khbh不完全相同,所以要从新付值一遍
+                                    aspnetMembers.setUsername(username);
+                                    break;//找到一样的就打断循环不再比较
+                                }
                             }
                         }
+                    }else{
+                        aspnetMembers.setUsername(mobilenum);
+                        for(OneNvarchar var:oneNvarchars1){//循环海商里面的所有会员名字
+                            String username = var.getKhbh();
 
-
+                            if(mobilenum!=null){
+                                if(mobilenum.equals(username)){
+                                    khbhNum++;
+                                    //由于海商和点识网2边的username和khbh不完全相同,所以要从新付值一遍
+                                    aspnetMembers.setUsername(username);
+                                    break;//找到一样的就打断循环不再比较
+                                }
+                            }
+                        }
                     }
+
+
+
+
 
                     String firstcalltime = hionCustomer.getFirstcalltime();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

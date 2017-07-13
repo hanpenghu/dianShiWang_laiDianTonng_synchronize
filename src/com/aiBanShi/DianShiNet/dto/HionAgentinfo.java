@@ -1,13 +1,29 @@
 package com.aiBanShi.DianShiNet.dto;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.Properties;
+
 public class HionAgentinfo {
     private Integer recid;
 
-    private String staffid;
+    private String staffid="9999";
 
-    private String staffname;
+    private String staffname="Public";
 
-    private String staffpwd;
+    private String staffpwd="123";
+    public HionAgentinfo(){
+        try {
+            String path = this.getClass().getResource("/").getPath();
+            Properties p=new Properties();
+            FileReader fileReader = new FileReader(new File(path + "dataSource.properties"));
+            p.load(fileReader);
+            this.staffid=  p.getProperty("gongGongZhangHaoDengLuOfLaiDianTong");
+            this.staffname=p.getProperty("gongGongZhangHaoNameOfLaiDianTong");
+            this.staffpwd=p.getProperty("gongGongZhangHaoMiMaOfLaiDianTong");
+            fileReader.close();
+        } catch (Exception e) {e.printStackTrace();}
+    }
 
     private String department;
 
